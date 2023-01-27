@@ -20,3 +20,9 @@ INSERT INTO persoon (achternaam, voorletters, geboortedatum, geslacht, email, ag
 ('Plysiuk', 'N.', '1994-6-19', 'V', 'nadiia.plysiuk@dental.point', 12000003, 'BEHANDELAAR'),
 ('Duvekot', 'K.', '1970-2-14', 'M', 'kees.duvekot@dental.point', 12000004, 'BEHANDELAAR')
 ;
+
+INSERT INTO persoon (achternaam, voorletters, geboortedatum, geslacht, email, relatienummer, type) VALUES
+('Kosten', 'G.J.', '2000-6-19', 'M', 'gydo.kosten@mail.nl', 1608019, 'PATIENT'),
+('Jansen', 'J.', '2001-7-9', 'M', 'jan.jansen@mail.nl', 1608020, 'PATIENT'),
+('Pieterse', 'P.J.', '1987-3-26', 'M', 'piet.pieterse@mail.nl', 1608021, 'PATIENT')
+;
