@@ -4,7 +4,7 @@ CREATE DATABASE dentalpoint;
 USE dentalpoint;
 
 CREATE TABLE persoon (
-    id            INT                                    NOT NULL,
+    id            INT                                    NOT NULL AUTO_INCREMENT,
     achternaam    VARCHAR(255)                           NOT NULL,
     voorletters   VARCHAR(10)                            NOT NULL,
     geboortedatum DATE                                   NOT NULL,
