@@ -15,5 +15,8 @@ INSERT INTO behandeling VALUES
 
 DELETE FROM persoon;
 INSERT INTO persoon (achternaam, voorletters, geboortedatum, geslacht, email, agbcode, type) VALUES
-('Puk', 'P.', '1970-1-1', 'M', 'pietje.puk@dental.point', 12000001, 'BEHANDELAAR')
+('Puk', 'P.', '1970-1-1', 'M', 'pietje.puk@dental.point', 12000001, 'BEHANDELAAR'),
+('Iliuk', 'A.', '1989-8-5', 'V', 'alona.iliuk@dental.point', 12000002, 'BEHANDELAAR'),
+('Plysiuk', 'N.', '1994-6-19', 'V', 'nadiia.plysiuk@dental.point', 12000003, 'BEHANDELAAR'),
+('Duvekot', 'K.', '1970-2-14', 'M', 'kees.duvekot@dental.point', 12000004, 'BEHANDELAAR')
 ;
