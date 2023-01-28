@@ -24,7 +24,7 @@ CREATE TABLE behandeling (
 );
 
 CREATE TABLE nota (
-    notanummer        INT        NOT NULL AUTO_INCREMENT,
+    notanummer        INT        NOT NULL,
     patient           INT        NOT NULL,
     behandeling       VARCHAR(4) NOT NULL,
     startdatum        DATE       NOT NULL,
