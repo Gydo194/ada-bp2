@@ -35,7 +35,7 @@ public class MysqlBehandelingDAO implements BehandelingDAO {
     @Override
     public List<Behandeling> getAllBehandelingen() throws DatalayerException {
         try {
-            String query = "SELECT behandelingscode, prijs, omschrijving FROM behandelingen WHERE behandelingscode = '%s';";
+            String query = "SELECT behandelingscode, prijs, omschrijving FROM behandeling;";
             Statement statement = StatementFactory.getInstance().createStatement();
             ResultSet result = statement.executeQuery(query);
 
@@ -91,8 +91,8 @@ public class MysqlBehandelingDAO implements BehandelingDAO {
         } catch (SQLException sqlException) {
             System.out.printf("MysqlBehandelingDao::saveBehandeling(): SQLexception: %s\n", sqlException.getMessage());
             sqlException.printStackTrace();
-        }
 
-        throw new DatalayerException();
+            throw new DatalayerException();
+        }
     }
 }

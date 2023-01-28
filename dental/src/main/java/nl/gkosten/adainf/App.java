@@ -9,6 +9,8 @@ import nl.gkosten.adainf.datalayer.DAOProvider;
 import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandeling;
 
+import java.util.List;
+
 
 /**
  * JavaFX App
@@ -28,6 +30,16 @@ public class App extends Application {
         try {
             Behandeling b = DAOProvider.getBehandelingDAO().getBehandeling("H11");
             System.out.println("BEHANDELING: " + b);
+
+
+            //Behandeling x =new Behandeling("R08", 79.79D, "Eénvlaks composiet inlay");
+            //DAOProvider.getBehandelingDAO().saveBehandeling(x);
+
+            List<Behandeling> behandelingen = DAOProvider.getBehandelingDAO().getAllBehandelingen();
+            for (Behandeling i: behandelingen) {
+                System.out.println("BEHANDELING: " + i);
+            }
+
         } catch (DatalayerException e) {
             throw new RuntimeException(e);
         }
