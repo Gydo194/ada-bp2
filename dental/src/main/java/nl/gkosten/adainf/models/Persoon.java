@@ -66,4 +66,17 @@ public class Persoon {
     public void setGeslacht(Geslacht geslacht) {
         this.geslacht = geslacht;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Persoon{");
+        sb.append("bsn=").append(bsn);
+        sb.append(", achternaam='").append(achternaam).append('\'');
+        sb.append(", voorletters='").append(voorletters).append('\'');
+        sb.append(", geboortedatum=").append(geboortedatum);
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", geslacht=").append(geslacht);
+        sb.append('}');
+        return sb.toString();
+    }
 }

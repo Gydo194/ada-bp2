@@ -7,6 +7,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import nl.gkosten.adainf.datalayer.DAOProvider;
 import nl.gkosten.adainf.datalayer.DatalayerException;
+import nl.gkosten.adainf.models.Behandelaar;
 import nl.gkosten.adainf.models.Behandeling;
 
 import java.util.List;
@@ -38,6 +39,13 @@ public class App extends Application {
             List<Behandeling> behandelingen = DAOProvider.getBehandelingDAO().getAllBehandelingen();
             for (Behandeling i: behandelingen) {
                 System.out.println("BEHANDELING: " + i);
+            }
+
+            System.out.println("\n\n\n\n\n");
+
+            List<Behandelaar> behandelaars = DAOProvider.getBehandelaarDAO().getAllBehandelaars();
+            for(Behandelaar i : behandelaars) {
+                System.out.println("BEHANDELAAR: " + i);
             }
 
         } catch (DatalayerException e) {

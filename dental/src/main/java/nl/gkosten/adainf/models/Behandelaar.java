@@ -17,4 +17,13 @@ public class Behandelaar extends Persoon {
     public void setAgbcode(int agbcode) {
         this.agbcode = agbcode;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Behandelaar{");
+        sb.append(super.toString());
+        sb.append("agbcode=").append(agbcode);
+        sb.append('}');
+        return sb.toString();
+    }
 }

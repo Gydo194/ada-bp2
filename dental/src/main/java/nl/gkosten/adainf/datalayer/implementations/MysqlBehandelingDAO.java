@@ -39,9 +39,7 @@ public class MysqlBehandelingDAO implements BehandelingDAO {
             Statement statement = StatementFactory.getInstance().createStatement();
             ResultSet result = statement.executeQuery(query);
 
-            List<Behandeling> behandelingen = instantiateFromQueryResults(result);
-
-            return behandelingen;
+            return instantiateFromQueryResults(result);
 
         } catch (SQLException sqlException) {
             System.out.printf("MysqlBehandelingDao::getAllBehandelingen(): SQLexception: %s\n", sqlException.getMessage());
