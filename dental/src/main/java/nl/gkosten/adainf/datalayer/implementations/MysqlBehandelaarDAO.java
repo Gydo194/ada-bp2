@@ -1,7 +1,7 @@
 package nl.gkosten.adainf.datalayer.implementations;
 
 import nl.gkosten.adainf.datalayer.interfaces.BehandelaarDAO;
-import nl.gkosten.adainf.datalayer.interfaces.DatalayerException;
+import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandelaar;
 
 public class MysqlBehandelaarDAO implements BehandelaarDAO {

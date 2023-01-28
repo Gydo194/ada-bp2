@@ -1,7 +1,7 @@
 package nl.gkosten.adainf.datalayer.interfaces;
 
+import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Patient;
-import nl.gkosten.adainf.datalayer.interfaces.DatalayerException;
 
 public interface PatientDAO {
 

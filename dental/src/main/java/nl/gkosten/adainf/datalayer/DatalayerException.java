@@ -1,4 +1,4 @@
-package nl.gkosten.adainf.datalayer.interfaces;
+package nl.gkosten.adainf.datalayer;
 
 public class DatalayerException extends Exception {
 }

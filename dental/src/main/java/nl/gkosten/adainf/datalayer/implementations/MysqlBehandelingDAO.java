@@ -1,8 +1,8 @@
 package nl.gkosten.adainf.datalayer.implementations;
 
 import nl.gkosten.adainf.database.StatementFactory;
+import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.datalayer.interfaces.BehandelingDAO;
-import nl.gkosten.adainf.datalayer.interfaces.DatalayerException;
 import nl.gkosten.adainf.models.Behandeling;
 
 import java.sql.ResultSet;
@@ -55,7 +55,7 @@ public class MysqlBehandelingDAO implements BehandelingDAO {
     public Behandeling getBehandeling(String code) throws DatalayerException {
         try {
             String query = String.format(
-                    "SELECT behandelingscode, prijs, omschrijving FROM behandelingen WHERE behandelingscode = '%s' LIMIT 1;",
+                    "SELECT behandelingscode, prijs, omschrijving FROM behandeling WHERE behandelingscode = '%s' LIMIT 1;",
                     code
             );
             Statement statement = StatementFactory.getInstance().createStatement();

@@ -1,6 +1,6 @@
 package nl.gkosten.adainf.datalayer.interfaces;
 
-import nl.gkosten.adainf.datalayer.interfaces.DatalayerException;
+import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Nota;
 
 public interface NotaDAO {

@@ -34,4 +34,14 @@ public class Behandeling {
     public void setOmschrijving(String omschrijving) {
         this.omschrijving = omschrijving;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Behandeling{");
+        sb.append("code='").append(code).append('\'');
+        sb.append(", prijs=").append(prijs);
+        sb.append(", omschrijving='").append(omschrijving).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
