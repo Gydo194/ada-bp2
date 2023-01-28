@@ -31,7 +31,7 @@ INSERT INTO persoon (bsn, achternaam, voorletters, geboortedatum, geslacht, emai
 ;
 
 
-INSERT INTO nota (persoon, behandeling, startdatum, einddatum) VALUES
+INSERT INTO nota (patient, behandeling, startdatum, einddatum) VALUES
 (237943979, 'C001', '2023-01-28', '2023-01-28'),
 (237943979, 'M03', '2023-01-28', '2023-01-28'),
 (237943927, 'V92', '2022-05-10', '2022-05-10'),

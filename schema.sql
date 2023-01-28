@@ -25,11 +25,11 @@ CREATE TABLE behandeling (
 
 CREATE TABLE nota (
     notanummer        INT        NOT NULL AUTO_INCREMENT,
-    persoon           INT        NOT NULL,
+    patient           INT        NOT NULL,
     behandeling       VARCHAR(4) NOT NULL,
     startdatum        DATE       NOT NULL,
     einddatum         DATE       NOT NULL,
     PRIMARY KEY (notanummer),
-    FOREIGN KEY (persoon) REFERENCES persoon(bsn),
+    FOREIGN KEY (patient) REFERENCES persoon(bsn),
     FOREIGN KEY (behandeling) REFERENCES behandeling(behandelingscode)
 );
