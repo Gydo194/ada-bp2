@@ -9,7 +9,12 @@ import nl.gkosten.adainf.datalayer.DAOProvider;
 import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandelaar;
 import nl.gkosten.adainf.models.Behandeling;
+import nl.gkosten.adainf.models.Geslacht;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -48,7 +53,18 @@ public class App extends Application {
                 System.out.println("BEHANDELAAR: " + i);
             }
 
-        } catch (DatalayerException e) {
+            System.out.println("\n\n\n\n\n");
+
+            System.out.println(DAOProvider.getBehandelaarDAO().getBehandelaar(237944161));
+
+
+            DateFormat g= new SimpleDateFormat("yyyy-MM-dd");
+            Date h = g.parse("1970-11-30");
+            Behandelaar r = new Behandelaar(237943978, "Overbeeke", "M.", h, "moverbeeke@zeelandnet.nl", Geslacht.VROUW, 12000006);
+            DAOProvider.getBehandelaarDAO().saveBehandelaar(r);
+
+
+        } catch (DatalayerException | ParseException e) {
             throw new RuntimeException(e);
         }
 

@@ -9,23 +9,12 @@ import nl.gkosten.adainf.models.Geslacht;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MysqlBehandelaarDAO implements BehandelaarDAO {
-
-    private static Geslacht parseGeslacht(String s) throws DatalayerException {
-        return switch (s) {
-            case "M" -> Geslacht.MAN;
-            case "V" -> Geslacht.VROUW;
-            default -> throw new DatalayerException(
-                    String.format(
-                            "Invalid value for geslacht: '%s'",
-                            s
-                    )
-            );
-        };
-    }
 
     private List<Behandelaar> instantiateFromQueryResults(ResultSet resultSet) throws SQLException, DatalayerException {
 
@@ -39,7 +28,7 @@ public class MysqlBehandelaarDAO implements BehandelaarDAO {
                     resultSet.getString(3),
                     resultSet.getDate(4),
                     resultSet.getString(6),
-                    parseGeslacht(resultSet.getString(5)),
+                    Geslacht.from(resultSet.getString(5)),
                     resultSet.getInt(7)
             );
 
@@ -69,11 +58,46 @@ public class MysqlBehandelaarDAO implements BehandelaarDAO {
 
     @Override
     public Behandelaar getBehandelaar(int bsn) throws DatalayerException {
-        return null;
+        try {
+            String query = String.format(
+                    "SELECT bsn, achternaam, voorletters, geboortedatum, geslacht, email, agbcode FROM persoon WHERE type = 'BEHANDELAAR' AND bsn = %d LIMIT 1;",
+                    bsn
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+            ResultSet result = statement.executeQuery(query);
+
+            return instantiateFromQueryResults(result).get(0);
+
+        } catch (SQLException sqlException) {
+            System.out.printf("MysqlBehandelaarDao::getAllBehandelaars(): SQLexception: %s\n", sqlException.getMessage());
+            sqlException.printStackTrace();
+
+            throw new DatalayerException("getAllBehandelaars(): SQLexception:", sqlException);
+        }
+
     }
 
     @Override
-    public void saveBehandelaar(Behandelaar behandelaar) {
+    public void saveBehandelaar(Behandelaar behandelaar) throws DatalayerException {
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String query = String.format(
+                    "INSERT INTO persoon (bsn, achternaam, voorletters, geboortedatum, email, geslacht, agbcode, type) VALUES(%d, '%s', '%s', '%s', '%s', '%s', %d, 'BEHANDELAAR');",
+                    behandelaar.getBsn(),
+                    behandelaar.getAchternaam(),
+                    behandelaar.getVoorletters(),
+                    formatter.format(behandelaar.getGeboortedatum()),
+                    behandelaar.getEmail(),
+                    behandelaar.getGeslacht().toString(),
+                    behandelaar.getAgbcode()
+            );
 
+            Statement statement = StatementFactory.getInstance().createStatement();
+            statement.execute(query);
+
+        } catch (SQLException sqlException) {
+            throw new DatalayerException("MysqlBehandelaarDao::saveBehandelaar(): SQLexception: %s\n", sqlException);
+        }
     }
 }
