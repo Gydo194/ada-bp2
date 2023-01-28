@@ -8,6 +8,8 @@ public class Behandelaar extends Persoon {
 
     public Behandelaar(int bsn, String achternaam, String voorletters, Date geboortedatum, String email, Geslacht geslacht, int agbcode) {
         super(bsn, achternaam, voorletters, geboortedatum, email, geslacht);
+
+        this.agbcode = agbcode;
     }
 
     public int getAgbcode() {
