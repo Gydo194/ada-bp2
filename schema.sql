@@ -4,7 +4,7 @@ CREATE DATABASE dentalpoint;
 USE dentalpoint;
 
 CREATE TABLE persoon (
-    id            INT                                    NOT NULL AUTO_INCREMENT,
+    bsn           INT                                    NOT NULL,
     achternaam    VARCHAR(255)                           NOT NULL,
     voorletters   VARCHAR(10)                            NOT NULL,
     geboortedatum DATE                                   NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE persoon (
     agbcode       INT                                    NULL,
     relatienummer INT                                    NULL,
     type          ENUM('PATIENT', 'BEHANDELAAR')         NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(bsn)
 );
 
 CREATE TABLE behandeling (
@@ -24,12 +24,12 @@ CREATE TABLE behandeling (
 );
 
 CREATE TABLE nota (
-    persoon_id        INT        NOT NULL,
-    behandeling_id    VARCHAR(4) NOT NULL,
     notanummer        INT        NOT NULL,
+    persoon           INT        NOT NULL,
+    behandeling       VARCHAR(4) NOT NULL,
     startdatum        DATE       NOT NULL,
     einddatum         DATE       NOT NULL,
-    PRIMARY KEY (persoon_id, behandeling_id, notanummer),
-    FOREIGN KEY (persoon_id) REFERENCES persoon(id),
-    FOREIGN KEY (behandeling_id) REFERENCES behandeling(behandelingscode)
+    PRIMARY KEY (notanummer),
+    FOREIGN KEY (persoon) REFERENCES persoon(bsn),
+    FOREIGN KEY (behandeling) REFERENCES behandeling(behandelingscode)
 );
