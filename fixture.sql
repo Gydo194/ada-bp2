@@ -14,15 +14,15 @@ INSERT INTO behandeling VALUES
 ;
 
 DELETE FROM persoon;
-INSERT INTO persoon (achternaam, voorletters, geboortedatum, geslacht, email, agbcode, type) VALUES
-('Puk', 'P.', '1970-1-1', 'M', 'pietje.puk@dental.point', 12000001, 'BEHANDELAAR'),
-('Iliuk', 'A.', '1989-8-5', 'V', 'alona.iliuk@dental.point', 12000002, 'BEHANDELAAR'),
-('Plysiuk', 'N.', '1994-6-19', 'V', 'nadiia.plysiuk@dental.point', 12000003, 'BEHANDELAAR'),
-('Duvekot', 'K.', '1970-2-14', 'M', 'kees.duvekot@dental.point', 12000004, 'BEHANDELAAR')
+INSERT INTO persoon (bsn, achternaam, voorletters, geboortedatum, geslacht, email, agbcode, type) VALUES
+(237844013, 'Puk', 'P.', '1970-1-1', 'M', 'pietje.puk@dental.point', 12000001, 'BEHANDELAAR'),
+(237944149, 'Iliuk', 'A.', '1989-8-5', 'V', 'alona.iliuk@dental.point', 12000002, 'BEHANDELAAR'),
+(237944161, 'Plysiuk', 'N.', '1994-6-19', 'V', 'nadiia.plysiuk@dental.point', 12000003, 'BEHANDELAAR'),
+(237843651, 'Duvekot', 'K.', '1970-2-14', 'M', 'kees.duvekot@dental.point', 12000004, 'BEHANDELAAR')
 ;
 
-INSERT INTO persoon (achternaam, voorletters, geboortedatum, geslacht, email, relatienummer, type) VALUES
-('Kosten', 'G.J.', '2000-6-19', 'M', 'gydo.kosten@mail.nl', 1608019, 'PATIENT'),
-('Jansen', 'J.', '2001-7-9', 'M', 'jan.jansen@mail.nl', 1608020, 'PATIENT'),
-('Pieterse', 'P.J.', '1987-3-26', 'M', 'piet.pieterse@mail.nl', 1608021, 'PATIENT')
+INSERT INTO persoon (bsn, achternaam, voorletters, geboortedatum, geslacht, email, relatienummer, type) VALUES
+(237943979, 'Kosten', 'G.J.', '2000-6-19', 'M', 'gydo.kosten@mail.nl', 1608019, 'PATIENT'),
+(237943927, 'Jansen', 'J.', '2001-7-9', 'M', 'jan.jansen@mail.nl', 1608020, 'PATIENT'),
+(237943904, 'Pieterse', 'P.J.', '1987-3-26', 'M', 'piet.pieterse@mail.nl', 1608021, 'PATIENT')
 ;
