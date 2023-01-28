@@ -10,6 +10,7 @@ import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandelaar;
 import nl.gkosten.adainf.models.Behandeling;
 import nl.gkosten.adainf.models.Geslacht;
+import nl.gkosten.adainf.models.Patient;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -58,13 +59,33 @@ public class App extends Application {
             System.out.println(DAOProvider.getBehandelaarDAO().getBehandelaar(237944161));
 
 
+            /*
             DateFormat g= new SimpleDateFormat("yyyy-MM-dd");
             Date h = g.parse("1970-11-30");
             Behandelaar r = new Behandelaar(237943978, "Overbeeke", "M.", h, "moverbeeke@zeelandnet.nl", Geslacht.VROUW, 12000006);
             DAOProvider.getBehandelaarDAO().saveBehandelaar(r);
+            */
+
+            System.out.println("\n\n\n\n\n");
+
+            List<Patient> patienten = DAOProvider.getPatientDAO().getAllPatienten();
+            for(Patient p : patienten) {
+                System.out.println("PATIENT: " + p);
+            }
+
+            Patient gydo = DAOProvider.getPatientDAO().getPatient(237943979);
+            System.out.println(gydo);
 
 
-        } catch (DatalayerException | ParseException e) {
+            /*
+            DateFormat g= new SimpleDateFormat("yyyy-MM-dd");
+            Date h = g.parse("1970-11-30");
+            Patient m = new Patient(237943977, "Kosten", "M.", h, "marco.kosten@mail.nl", Geslacht.MAN, 1608022);
+            DAOProvider.getPatientDAO().savePatient(m);
+            */
+
+
+        } catch (DatalayerException e) {
             throw new RuntimeException(e);
         }
 
