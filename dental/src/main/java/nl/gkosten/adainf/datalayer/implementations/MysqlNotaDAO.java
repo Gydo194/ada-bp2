@@ -76,5 +76,22 @@ public class MysqlNotaDAO implements NotaDAO {
     @Override
     public void saveNota(Nota nota) throws DatalayerException {
 
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String query = String.format(
+                    "INSERT INTO nota VALUES(%d, %d, '%s', '%s', '%s');",
+                    nota.getNummer(),
+                    nota.getPatient().getBsn(),
+                    nota.getBehandeling().getCode(),
+                    formatter.format(nota.getStartdatum()),
+                    formatter.format(nota.getEinddatum())
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+            statement.execute(query);
+
+        } catch (SQLException sqlException) {
+            throw new DatalayerException(sqlException);
+        }
     }
 }

@@ -12,6 +12,8 @@ import nl.gkosten.adainf.models.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -92,6 +94,17 @@ public class App extends Application {
             System.out.println("\n\n\n\n\n");
 
             System.out.println(DAOProvider.getNotaDAO().getNota(2022280));
+
+
+            Nota n = new Nota(
+                    2023081,
+                    patienten.get(1),
+                    behandelingen.get(4),
+                    new Date(2023, Calendar.JANUARY, 30),
+                    new Date(2023, Calendar.JANUARY, 30)
+            );
+
+            //DAOProvider.getNotaDAO().saveNota(n);
 
         } catch (DatalayerException e) {
             throw new RuntimeException(e);
