@@ -12,7 +12,15 @@ public class Nota {
     private Date einddatum;
 
     public Nota(Patient patient, Behandeling behandeling, Date startdatum, Date einddatum) {
-        this.nummer = new Random().nextInt();
+        this.nummer = new Random().nextInt(); //create the id here instead of in the database to prevent invalid entities
+        this.patient = patient;
+        this.behandeling = behandeling;
+        this.startdatum = startdatum;
+        this.einddatum = einddatum;
+    }
+
+    public Nota(int nummer, Patient patient, Behandeling behandeling, Date startdatum, Date einddatum) {
+        this.nummer = nummer;
         this.patient = patient;
         this.behandeling = behandeling;
         this.startdatum = startdatum;
@@ -38,4 +46,17 @@ public class Nota {
     public Date getEinddatum() {
         return einddatum;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Nota{");
+        sb.append("nummer=").append(nummer);
+        sb.append(", patient=").append(patient);
+        sb.append(", behandeling=").append(behandeling);
+        sb.append(", startdatum=").append(startdatum);
+        sb.append(", einddatum=").append(einddatum);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }

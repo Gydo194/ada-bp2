@@ -7,10 +7,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import nl.gkosten.adainf.datalayer.DAOProvider;
 import nl.gkosten.adainf.datalayer.DatalayerException;
-import nl.gkosten.adainf.models.Behandelaar;
-import nl.gkosten.adainf.models.Behandeling;
-import nl.gkosten.adainf.models.Geslacht;
-import nl.gkosten.adainf.models.Patient;
+import nl.gkosten.adainf.models.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -83,6 +80,12 @@ public class App extends Application {
             Patient m = new Patient(237943977, "Kosten", "M.", h, "marco.kosten@mail.nl", Geslacht.MAN, 1608022);
             DAOProvider.getPatientDAO().savePatient(m);
             */
+
+            System.out.println("\n\n\n\n\n");
+            List<Nota> notas = DAOProvider.getNotaDAO().getAllNotas();
+            for(Nota n : notas) {
+                System.out.println("NOTA: " + n);
+            }
 
 
         } catch (DatalayerException e) {
