@@ -54,7 +54,23 @@ public class MysqlNotaDAO implements NotaDAO {
 
     @Override
     public Nota getNota(int nummer) throws DatalayerException {
-        return null;
+
+        try {
+
+            final String query = String.format(
+                    "SELECT notanummer, patient, behandeling, startdatum, einddatum FROM nota WHERE notanummer = %d;",
+                    nummer
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+
+            ResultSet result = statement.executeQuery(query);
+
+            return instantiateFromResultSet(result).get(0);
+
+        } catch (SQLException e) {
+            throw new DatalayerException(e);
+        }
     }
 
     @Override

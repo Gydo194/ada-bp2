@@ -88,6 +88,11 @@ public class App extends Application {
             }
 
 
+
+            System.out.println("\n\n\n\n\n");
+
+            System.out.println(DAOProvider.getNotaDAO().getNota(2022280));
+
         } catch (DatalayerException e) {
             throw new RuntimeException(e);
         }
