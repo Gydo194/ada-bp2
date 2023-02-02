@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import nl.gkosten.adainf.datalayer.DAOProvider;
 import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.*;
+import nl.gkosten.adainf.views.Home;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -104,7 +105,13 @@ public class App extends Application {
                     new Date(2023, Calendar.JANUARY, 30)
             );
 
-            //DAOProvider.getNotaDAO().saveNota(n);
+            ////DAOProvider.getNotaDAO().saveNota(n);
+
+
+
+
+            stage.setScene(new Home().getHomeScene());
+            stage.show();
 
         } catch (DatalayerException e) {
             throw new RuntimeException(e);
