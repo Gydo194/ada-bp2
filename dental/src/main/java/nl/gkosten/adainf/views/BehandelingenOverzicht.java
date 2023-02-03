@@ -2,6 +2,7 @@ package nl.gkosten.adainf.views;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -26,6 +27,8 @@ public class BehandelingenOverzicht {
 
         Text title = new Text("Behandelingen");
         container.getChildren().add(title);
+
+
 
         TableView behandelingenTable = new TableView();
 
@@ -69,5 +72,9 @@ public class BehandelingenOverzicht {
 
     public Scene getBehandelingenOverzichtScene() {
         return behandelingenOverzichtScene;
+    }
+
+    public Node getContent() {
+        return container;
     }
 }
