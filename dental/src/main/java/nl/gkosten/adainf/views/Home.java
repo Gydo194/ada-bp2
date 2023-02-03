@@ -1,19 +1,21 @@
 package nl.gkosten.adainf.views;
 
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
+import nl.gkosten.adainf.App;
 
 public class Home {
     private final Scene homeScene;
     private final TilePane buttonPane;
 
-    private static final double buttonSize = 200.0D;
+    private static final double buttonSize = (double) App.PREFERRED_DIMENSIONS_X / 2.0D;
 
     public Home() {
         buttonPane = new TilePane();
-        buttonPane.setPrefWidth(400.0D);
-        buttonPane.setPrefHeight(400.0D);
+        buttonPane.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
+        buttonPane.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
 
         Button patientenOverzichtButton = new Button("Patienten");
         patientenOverzichtButton.setPrefWidth(buttonSize);

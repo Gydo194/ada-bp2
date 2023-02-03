@@ -24,13 +24,16 @@ import java.util.List;
  */
 public class App extends Application {
 
+    public static final int PREFERRED_DIMENSIONS_X = 600;
+    public static final int PREFERRED_DIMENSIONS_Y = 600;
+
     @Override
     public void start(Stage stage) {
         var javaVersion = SystemInfo.javaVersion();
         var javafxVersion = SystemInfo.javafxVersion();
 
         var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
+        var scene = new Scene(new StackPane(label), PREFERRED_DIMENSIONS_X, PREFERRED_DIMENSIONS_Y);
         stage.setScene(scene);
         stage.show();
 
