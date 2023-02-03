@@ -28,6 +28,9 @@ public class Home {
         Button behandelingenOverzichtButton = new Button("Behandeling");
         behandelingenOverzichtButton.setPrefWidth(buttonSize);
         behandelingenOverzichtButton.setPrefHeight(buttonSize);
+        behandelingenOverzichtButton.setOnAction(actionEvent -> {
+            App.showScene(new BehandelingenOverzicht().getBehandelingenOverzichtScene());
+        });
 
         Button notaOverzichtButton = new Button("Nota's");
         notaOverzichtButton.setPrefWidth(buttonSize);
