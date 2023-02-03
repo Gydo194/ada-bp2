@@ -16,8 +16,7 @@ import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandeling;
 
 public class BehandelingenOverzicht {
-    private Scene behandelingenOverzichtScene;
-    private VBox container;
+    private final VBox container;
 
     public BehandelingenOverzicht() {
         container = new VBox();
@@ -66,12 +65,6 @@ public class BehandelingenOverzicht {
         behandelingenTable.setItems(behandelingen);
 
         container.getChildren().add(behandelingenTable);
-
-        behandelingenOverzichtScene = new Scene(container);
-    }
-
-    public Scene getBehandelingenOverzichtScene() {
-        return behandelingenOverzichtScene;
     }
 
     public Node getContent() {
