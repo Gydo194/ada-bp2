@@ -5,10 +5,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import nl.gkosten.adainf.App;
 
-public class Home {
+public class Main {
     private final Scene homeScene;
 
-    public Home() {
+    public Main() {
         TabPane container = new TabPane();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
