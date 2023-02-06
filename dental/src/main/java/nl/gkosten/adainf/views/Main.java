@@ -19,7 +19,7 @@ public class Main {
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
 
         Tab behandelingenTab = new Tab("Behandelingen");
-        behandelingenTab.setContent(new BehandelingenOverzicht().getContent());
+        behandelingenTab.setContent(BehandelingenOverzicht.getContent());
         behandelingenTab.setClosable(false);
         container.getTabs().add(behandelingenTab);
 

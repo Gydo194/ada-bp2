@@ -17,12 +17,15 @@ import nl.gkosten.adainf.views.Main;
 import nl.gkosten.adainf.views.detail.BehandelingenDetailOverzicht;
 
 public class BehandelingenOverzicht {
-    private final VBox container;
-    private final TableView<Behandeling> behandelingenTable = new TableView<>();
-    private ObservableList<Behandeling> behandelingen = FXCollections.observableArrayList();
+    private static final VBox container = new VBox();
+    private static final TableView<Behandeling> behandelingenTable = new TableView<>();
+    private static ObservableList<Behandeling> behandelingen = FXCollections.observableArrayList();
 
-    public BehandelingenOverzicht() {
-        container = new VBox();
+    private BehandelingenOverzicht() {
+        //verbied gebruik van constructor
+    }
+
+    static {
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
 
@@ -123,7 +126,7 @@ public class BehandelingenOverzicht {
 
     }
 
-    private void updateData() {
+    public static void updateData() {
 
         try {
             behandelingen = FXCollections.observableArrayList(
@@ -138,7 +141,7 @@ public class BehandelingenOverzicht {
 
     }
 
-    public Node getContent() {
+    public static Node getContent() {
         return container;
     }
 }

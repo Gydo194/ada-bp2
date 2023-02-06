@@ -12,6 +12,7 @@ import nl.gkosten.adainf.controllers.ErrorDialogController;
 import nl.gkosten.adainf.datalayer.DAOProvider;
 import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandeling;
+import nl.gkosten.adainf.views.overzicht.BehandelingenOverzicht;
 
 public class BehandelingenDetailOverzicht {
     private final Behandeling behandeling;
@@ -103,6 +104,7 @@ public class BehandelingenDetailOverzicht {
             }
 
             ErrorDialogController.showDialog("Item gewijzigd", "De behandeling is gewijzigd.");
+            BehandelingenOverzicht.updateData();
 
         });
 
@@ -117,6 +119,7 @@ public class BehandelingenDetailOverzicht {
             }
 
             ErrorDialogController.showDialog("Item verwijderd", "De behandeling is verwijderd.");
+            BehandelingenOverzicht.updateData();
         });
 
     }
