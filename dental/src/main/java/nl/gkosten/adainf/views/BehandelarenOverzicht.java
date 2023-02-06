@@ -12,12 +12,12 @@ package nl.gkosten.adainf.views;
         import nl.gkosten.adainf.controllers.ErrorDialogController;
         import nl.gkosten.adainf.datalayer.DAOProvider;
         import nl.gkosten.adainf.datalayer.DatalayerException;
-        import nl.gkosten.adainf.models.Behandeling;
+        import nl.gkosten.adainf.models.Behandelaar;
 
 public class BehandelarenOverzicht {
     private final VBox container;
-    private final TableView behandelingenTable = new TableView();
-    private ObservableList<Behandeling> behandelingen = FXCollections.observableArrayList();
+    private final TableView behandelarenTable = new TableView();
+    private ObservableList<Behandelaar> behandelaren = FXCollections.observableArrayList();
 
     public BehandelarenOverzicht() {
         container = new VBox();
@@ -25,36 +25,60 @@ public class BehandelarenOverzicht {
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
 
 
-        Text title = new Text("Behandelingen");
+        Text title = new Text("Behandelaren");
         container.getChildren().add(title);
 
 
 
 
-        TableColumn codeColumn = new TableColumn("Code");
-        codeColumn.setCellValueFactory(
-                new PropertyValueFactory<>("code")
+        TableColumn bsnColumn = new TableColumn("BSN");
+        bsnColumn.setCellValueFactory(
+                new PropertyValueFactory<>("bsn")
         );
 
-        TableColumn omschrijvingColumn = new TableColumn("Omschrijving");
-        omschrijvingColumn.setCellValueFactory(
-                new PropertyValueFactory<>("omschrijving")
+        TableColumn achternaamColumn = new TableColumn("Achternaam");
+        achternaamColumn.setCellValueFactory(
+                new PropertyValueFactory<>("achternaam")
         );
 
-        TableColumn prijsColumn = new TableColumn("Prijs");
-        prijsColumn.setCellValueFactory(
-                new PropertyValueFactory<>("prijs")
+        TableColumn voorlettersColumn = new TableColumn("Voorletters");
+        voorlettersColumn.setCellValueFactory(
+                new PropertyValueFactory<>("voorletters")
         );
 
-        behandelingenTable.getColumns().addAll(
-                codeColumn,
-                omschrijvingColumn,
-                prijsColumn
+        TableColumn geboortedatumColumn = new TableColumn("Geboortedatum");
+        geboortedatumColumn.setCellValueFactory(
+                new PropertyValueFactory<>("geboortedatum")
+        );
+
+        TableColumn emailColumn = new TableColumn("E-mail");
+        emailColumn.setCellValueFactory(
+                new PropertyValueFactory<>("email")
+        );
+
+        TableColumn geslachtColumn = new TableColumn("Geslacht");
+        geslachtColumn.setCellValueFactory(
+                new PropertyValueFactory<>("geslacht")
+        );
+
+        TableColumn agbcodeColumn = new TableColumn("AGB-code");
+        agbcodeColumn.setCellValueFactory(
+                new PropertyValueFactory<>("agbcode")
+        );
+
+        behandelarenTable.getColumns().addAll(
+                bsnColumn,
+                achternaamColumn,
+                voorlettersColumn,
+                geboortedatumColumn,
+                emailColumn,
+                geslachtColumn,
+                agbcodeColumn
         );
 
         updateData();
 
-        container.getChildren().add(behandelingenTable);
+        container.getChildren().add(behandelarenTable);
 
 
         GridPane formGrid = new GridPane();
@@ -83,14 +107,16 @@ public class BehandelarenOverzicht {
                 return;
             }
 
-            Behandeling behandeling = new Behandeling(code, prijs, omschrijving);
+            /*
+            Behandelaar behandelaar = new Behandelaar(code, prijs, omschrijving);
 
             try {
-                DAOProvider.getBehandelingDAO().saveBehandeling(behandeling);
+                DAOProvider.getBehandelaarDAO().saveBehandelaar(behandelaar);
             } catch(DatalayerException e) {
                 ErrorDialogController.showError("Database Fout", "Er is iets misgegaan bij het opslaan.");
                 e.printStackTrace();
             }
+            */
 
             updateData();
 
@@ -111,15 +137,15 @@ public class BehandelarenOverzicht {
     private void updateData() {
 
         try {
-            behandelingen = FXCollections.observableArrayList(
-                    DAOProvider.getBehandelingDAO().getAllBehandelingen()
+            behandelaren = FXCollections.observableArrayList(
+                    DAOProvider.getBehandelaarDAO().getAllBehandelaars()
             );
         } catch (DatalayerException e) {
-            ErrorDialogController.showError("Database fout", "Er is een fout opgetreden tijdens het laden van behandelingen.");
+            ErrorDialogController.showError("Database fout", "Er is een fout opgetreden tijdens het laden van behandelaren.");
             e.printStackTrace();
         }
 
-        behandelingenTable.setItems(behandelingen);
+        behandelarenTable.setItems(behandelaren);
 
     }
 
