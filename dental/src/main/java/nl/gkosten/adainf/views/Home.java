@@ -23,6 +23,12 @@ public class Home {
         behandelarenTab.setClosable(false);
         container.getTabs().add(behandelarenTab);
 
+        Tab notaTab = new Tab("Nota's");
+        notaTab.setContent(new NotaOverzicht().getContent());
+        notaTab.setClosable(false);
+        container.getTabs().add(notaTab);
+
+
 
         homeScene = new Scene(container);
     }

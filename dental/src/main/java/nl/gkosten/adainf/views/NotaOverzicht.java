@@ -12,12 +12,12 @@ package nl.gkosten.adainf.views;
         import nl.gkosten.adainf.controllers.ErrorDialogController;
         import nl.gkosten.adainf.datalayer.DAOProvider;
         import nl.gkosten.adainf.datalayer.DatalayerException;
-        import nl.gkosten.adainf.models.Behandeling;
+        import nl.gkosten.adainf.models.Nota;
 
 public class NotaOverzicht {
     private final VBox container;
-    private final TableView behandelingenTable = new TableView();
-    private ObservableList<Behandeling> behandelingen = FXCollections.observableArrayList();
+    private final TableView notaTable = new TableView();
+    private ObservableList<Nota> nota = FXCollections.observableArrayList();
 
     public NotaOverzicht() {
         container = new VBox();
@@ -25,11 +25,11 @@ public class NotaOverzicht {
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
 
 
-        Text title = new Text("Behandelingen");
+        Text title = new Text("Nota's");
         container.getChildren().add(title);
 
 
-        behandelingenTable.setEditable(true);
+        notaTable.setEditable(true);
 
 
         TableColumn codeColumn = new TableColumn("Code");
@@ -47,7 +47,7 @@ public class NotaOverzicht {
                 new PropertyValueFactory<>("prijs")
         );
 
-        behandelingenTable.getColumns().addAll(
+        notaTable.getColumns().addAll(
                 codeColumn,
                 omschrijvingColumn,
                 prijsColumn
@@ -55,7 +55,7 @@ public class NotaOverzicht {
 
         updateData();
 
-        container.getChildren().add(behandelingenTable);
+        container.getChildren().add(notaTable);
 
 
         GridPane formGrid = new GridPane();
@@ -84,14 +84,16 @@ public class NotaOverzicht {
                 return;
             }
 
-            Behandeling behandeling = new Behandeling(code, prijs, omschrijving);
+            /*
+            Nota nota = new Nota(code, prijs, omschrijving);
 
             try {
-                DAOProvider.getBehandelingDAO().saveBehandeling(behandeling);
+                DAOProvider.getNotaDAO().saveNota(nota);
             } catch(DatalayerException e) {
                 ErrorDialogController.showError("Database Fout", "Er is iets misgegaan bij het opslaan.");
                 e.printStackTrace();
             }
+            */
 
             updateData();
 
@@ -112,15 +114,15 @@ public class NotaOverzicht {
     private void updateData() {
 
         try {
-            behandelingen = FXCollections.observableArrayList(
-                    DAOProvider.getBehandelingDAO().getAllBehandelingen()
+            nota = FXCollections.observableArrayList(
+                    DAOProvider.getNotaDAO().getAllNotas()
             );
         } catch (DatalayerException e) {
-            ErrorDialogController.showError("Database fout", "Er is een fout opgetreden tijdens het laden van behandelingen.");
+            ErrorDialogController.showError("Database fout", "Er is een fout opgetreden tijdens het laden van nota.");
             e.printStackTrace();
         }
 
-        behandelingenTable.setItems(behandelingen);
+        notaTable.setItems(nota);
 
     }
 
