@@ -13,8 +13,13 @@ package nl.gkosten.adainf.views;
         import nl.gkosten.adainf.datalayer.DAOProvider;
         import nl.gkosten.adainf.datalayer.DatalayerException;
         import nl.gkosten.adainf.models.Behandelaar;
+        import nl.gkosten.adainf.models.Behandeling;
         import nl.gkosten.adainf.models.Geslacht;
 
+        import java.text.DateFormat;
+        import java.text.ParseException;
+        import java.text.SimpleDateFormat;
+        import java.time.format.DateTimeFormatter;
         import java.util.Date;
 
 public class BehandelarenOverzicht {
@@ -112,16 +117,75 @@ public class BehandelarenOverzicht {
             Date geboortedatum;
 
             try {
-                //prijs = Double.parseDouble(prijsField.getText());
-            } catch (NumberFormatException e) {
-                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldig nummer in!");
+                bsn = Integer.parseInt(bsnField.getText());
+            } catch(NumberFormatException e) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldig BSN in!");
                 e.printStackTrace();
 
                 return;
             }
 
-            /*
-            Behandelaar behandelaar = new Behandelaar(code, prijs, omschrijving);
+            try {
+                agbcode = Integer.parseInt(agbcodeField.getText());
+            } catch(NumberFormatException e) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldige AGB-code in!");
+                e.printStackTrace();
+
+                return;
+            }
+
+            achternaam = achternaamField.getText();
+
+            if(achternaam.isBlank()) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een achternaam in!");
+
+                return;
+            }
+
+
+            voorletters = voorlettersField.getText();
+
+            if(voorletters.isBlank()) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer geldige voorletters in!");
+
+                return;
+            }
+
+            email = emailField.getText();
+
+            if(email.isBlank()) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldig E-mail adres in!");
+
+                return;
+            }
+
+           if(!(geslachtField.getText().equals("M") || geslachtField.getText().equals("V"))) {
+               ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldig geslacht in! (M/V)");
+
+               return;
+           }
+           geslacht = Geslacht.from(geslachtField.getText());
+
+            try {
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                geboortedatum = format.parse(geboortedatumField.getText());
+
+            } catch (ParseException e) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldige datum in!");
+                e.printStackTrace();
+
+                return;
+            }
+
+            Behandelaar behandelaar = new Behandelaar(
+                    bsn,
+                    achternaam,
+                    voorletters,
+                    geboortedatum,
+                    email,
+                    geslacht,
+                    agbcode
+            );
 
             try {
                 DAOProvider.getBehandelaarDAO().saveBehandelaar(behandelaar);
@@ -129,7 +193,6 @@ public class BehandelarenOverzicht {
                 ErrorDialogController.showError("Database Fout", "Er is iets misgegaan bij het opslaan.");
                 e.printStackTrace();
             }
-            */
 
             updateData();
 
