@@ -83,7 +83,7 @@ public class MysqlPatientDAO implements PatientDAO {
                     patient.getVoorletters(),
                     formatter.format(patient.getGeboortedatum()),
                     patient.getEmail(),
-                    patient.getGeslacht().toString(),
+                    patient.getGeslacht().toShortRepresentation(),
                     patient.getRelatienummer()
             );
 

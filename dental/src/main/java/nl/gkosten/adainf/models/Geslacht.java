@@ -7,6 +7,13 @@ public enum Geslacht {
     @Override
     public String toString() {
         return switch (this) {
+            case MAN -> "Man";
+            case VROUW -> "Vrouw";
+        };
+    }
+
+    public String toShortRepresentation() {
+        return switch (this) {
             case MAN -> "M";
             case VROUW -> "V";
         };
@@ -14,7 +21,7 @@ public enum Geslacht {
 
     public static Geslacht from(String s) {
         return switch(s) {
-            case "M" -> Geslacht.MAN;
+            case "M", "Man", "MAN" -> Geslacht.MAN;
             default -> Geslacht.VROUW;
         };
     }

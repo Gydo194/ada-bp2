@@ -106,10 +106,11 @@ public class BehandelarenOverzicht {
 
         // geslacht dropdown
         ObservableList<String> geslachtBoxOptions = FXCollections.observableArrayList(
-                "M",
-                "V"
+                "Man",
+                "Vrouw"
         );
         ComboBox<String> geslachtBox = new ComboBox<>(geslachtBoxOptions);
+        geslachtBox.getSelectionModel().selectLast();
 
         //toevoegen button
         Button addButton = new Button("Toevoegen");

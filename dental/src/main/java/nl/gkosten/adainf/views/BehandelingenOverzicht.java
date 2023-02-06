@@ -29,6 +29,7 @@ public class BehandelingenOverzicht {
         container.getChildren().add(title);
 
 
+        behandelingenTable.setEditable(true);
 
 
         TableColumn codeColumn = new TableColumn("Code");

@@ -89,7 +89,7 @@ public class MysqlBehandelaarDAO implements BehandelaarDAO {
                     behandelaar.getVoorletters(),
                     formatter.format(behandelaar.getGeboortedatum()),
                     behandelaar.getEmail(),
-                    behandelaar.getGeslacht().toString(),
+                    behandelaar.getGeslacht().toShortRepresentation(),
                     behandelaar.getAgbcode()
             );
 
