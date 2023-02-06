@@ -147,16 +147,16 @@ public class BehandelarenOverzicht {
         formGrid.add(geboortedatumLabel,    0, 3);
         formGrid.add(geboortedatumField,    1, 3);
 
-        formGrid.add(emailLabel,            0, 4);
-        formGrid.add(emailField,            1, 4);
+        formGrid.add(emailLabel,            2, 0);
+        formGrid.add(emailField,            3, 0);
 
-        formGrid.add(geslachtLabel,         0, 5);
-        formGrid.add(geslachtField,         1, 5);
+        formGrid.add(geslachtLabel,         2, 1);
+        formGrid.add(geslachtField,         3, 1);
 
-        formGrid.add(agbcodeLabel,          0, 6);
-        formGrid.add(agbcodeField,          1, 6);
+        formGrid.add(agbcodeLabel,          2, 2);
+        formGrid.add(agbcodeField,          3, 2);
 
-        formGrid.add(addButton,         0, 7);
+        formGrid.add(addButton,             3, 3);
 
         container.getChildren().add(formGrid);
 
