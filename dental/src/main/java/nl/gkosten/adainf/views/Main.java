@@ -4,6 +4,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import nl.gkosten.adainf.App;
+import nl.gkosten.adainf.views.overzicht.BehandelarenOverzicht;
+import nl.gkosten.adainf.views.overzicht.BehandelingenOverzicht;
+import nl.gkosten.adainf.views.overzicht.NotaOverzicht;
 
 public class Main {
     private final Scene homeScene;

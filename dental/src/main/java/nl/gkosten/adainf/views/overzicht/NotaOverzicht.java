@@ -1,4 +1,4 @@
-package nl.gkosten.adainf.views;
+package nl.gkosten.adainf.views.overzicht;
 
         import javafx.collections.FXCollections;
         import javafx.collections.ObservableList;
