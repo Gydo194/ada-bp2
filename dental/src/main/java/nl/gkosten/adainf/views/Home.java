@@ -18,6 +18,12 @@ public class Home {
         behandelingenTab.setClosable(false);
         container.getTabs().add(behandelingenTab);
 
+        Tab behandelarenTab = new Tab("Behandelaren");
+        behandelarenTab.setContent(new BehandelarenOverzicht().getContent());
+        behandelarenTab.setClosable(false);
+        container.getTabs().add(behandelarenTab);
+
+
         homeScene = new Scene(container);
     }
 
