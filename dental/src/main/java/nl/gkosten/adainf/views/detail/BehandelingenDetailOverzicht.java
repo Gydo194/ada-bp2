@@ -8,7 +8,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import nl.gkosten.adainf.App;
+import nl.gkosten.adainf.controllers.ErrorDialogController;
 import nl.gkosten.adainf.models.Behandeling;
+import nl.gkosten.adainf.views.overzicht.BehandelingenOverzicht;
 
 public class BehandelingenDetailOverzicht {
     private Behandeling behandeling;
@@ -49,6 +51,64 @@ public class BehandelingenDetailOverzicht {
 
         container.getChildren().add(formGrid);
 
+
+
+
+
+        codeField.setText(behandeling.getCode());
+        prijsField.setText(String.format("%.02f", behandeling.getPrijs()));
+        omschrijvingField.setText(behandeling.getOmschrijving());
+
+        updateButton.setOnAction(actionEvent -> {
+           String behandelingscode, omschrijving;
+           double prijs;
+
+           behandelingscode = codeField.getText();
+           if(behandelingscode.isBlank()) {
+               ErrorDialogController.showError("Ongeldige Invoer", "Voer een behandelingscode in.");
+
+               return;
+           }
+
+
+           omschrijving = omschrijvingField.getText();
+            if(omschrijving.isBlank()) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een omschrijving in.");
+
+                return;
+            }
+
+            try {
+                prijs = Double.parseDouble(prijsField.getText());
+            } catch (NumberFormatException e) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldige prijs in.");
+                e.printStackTrace();
+
+                return;
+            }
+
+            Behandeling updated = new Behandeling(behandelingscode, prijs, omschrijving);
+
+            System.out.println("UPDATE:");
+            System.out.println(updated);
+
+
+        });
+
+        deleteButton.setOnAction(actionEvent -> {
+            String behandelingscode;
+
+            behandelingscode = codeField.getText();
+            if(behandelingscode.isBlank()) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een behandelingscode in.");
+
+                return;
+            }
+
+            System.out.println("DELETE:");
+            System.out.println(behandelingscode);
+
+        });
 
     }
 
