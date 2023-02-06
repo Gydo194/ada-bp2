@@ -13,6 +13,8 @@ import nl.gkosten.adainf.controllers.ErrorDialogController;
 import nl.gkosten.adainf.datalayer.DAOProvider;
 import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandeling;
+import nl.gkosten.adainf.views.Main;
+import nl.gkosten.adainf.views.detail.BehandelingenDetailOverzicht;
 
 public class BehandelingenOverzicht {
     private final VBox container;
@@ -46,6 +48,15 @@ public class BehandelingenOverzicht {
         prijsColumn.setCellValueFactory(
                 new PropertyValueFactory<>("prijs")
         );
+
+        behandelingenTable.setOnMouseClicked(mouseEvent -> {
+            if(mouseEvent.getClickCount() > 1) { //dubbel klik
+                Behandeling current = (Behandeling) behandelingenTable.getSelectionModel().getSelectedItem();
+                if(null != current) {
+                    Main.addTab(new BehandelingenDetailOverzicht(current).getContent(), "Wijzig Behandeling");
+                }
+            }
+        });
 
         behandelingenTable.getColumns().addAll(
                 codeColumn,
