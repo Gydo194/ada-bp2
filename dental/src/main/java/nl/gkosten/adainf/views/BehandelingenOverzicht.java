@@ -59,6 +59,7 @@ public class BehandelingenOverzicht {
 
 
         GridPane formGrid = new GridPane();
+        formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_Y);
 
         Label codeLabel = new Label("Code:");
         TextField codeField = new TextField();

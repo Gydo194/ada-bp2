@@ -86,6 +86,7 @@ public class BehandelarenOverzicht {
 
         //form voor het aanmaken van nieuwe behandelaar
         GridPane formGrid = new GridPane();
+        formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_Y);
 
         //labels
         Label bsnLabel              = new Label("BSN-nummer:");

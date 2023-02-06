@@ -68,6 +68,8 @@ public class MysqlPatientDAO implements PatientDAO {
 
         } catch (SQLException sqlException) {
             throw new DatalayerException("getAllPatients(): SQLexception:", sqlException);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DatalayerException("getAllPatients(): No Results", e); //TODO
         }
 
     }
