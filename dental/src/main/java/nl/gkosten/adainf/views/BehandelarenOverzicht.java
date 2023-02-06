@@ -1,45 +1,38 @@
 package nl.gkosten.adainf.views;
 
-        import javafx.collections.FXCollections;
-        import javafx.collections.ObservableList;
-        import javafx.scene.Node;
-        import javafx.scene.control.*;
-        import javafx.scene.control.cell.PropertyValueFactory;
-        import javafx.scene.layout.GridPane;
-        import javafx.scene.layout.VBox;
-        import javafx.scene.text.Text;
-        import nl.gkosten.adainf.App;
-        import nl.gkosten.adainf.controllers.ErrorDialogController;
-        import nl.gkosten.adainf.datalayer.DAOProvider;
-        import nl.gkosten.adainf.datalayer.DatalayerException;
-        import nl.gkosten.adainf.models.Behandelaar;
-        import nl.gkosten.adainf.models.Behandeling;
-        import nl.gkosten.adainf.models.Geslacht;
-
-        import java.text.DateFormat;
-        import java.text.ParseException;
-        import java.text.SimpleDateFormat;
-        import java.time.ZoneId;
-        import java.time.format.DateTimeFormatter;
-        import java.util.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import nl.gkosten.adainf.App;
+import nl.gkosten.adainf.controllers.ErrorDialogController;
+import nl.gkosten.adainf.datalayer.DAOProvider;
+import nl.gkosten.adainf.datalayer.DatalayerException;
+import nl.gkosten.adainf.models.Behandelaar;
+import nl.gkosten.adainf.models.Geslacht;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class BehandelarenOverzicht {
     private final VBox container;
     private final TableView behandelarenTable = new TableView();
     private ObservableList<Behandelaar> behandelaren = FXCollections.observableArrayList();
 
+    //maak de view
     public BehandelarenOverzicht() {
         container = new VBox();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
 
-
+        //header
         Text title = new Text("Behandelaren");
         container.getChildren().add(title);
 
-
-
-
+        //tableview kolommen
         TableColumn bsnColumn = new TableColumn("BSN");
         bsnColumn.setCellValueFactory(
                 new PropertyValueFactory<>("bsn")
@@ -85,13 +78,16 @@ public class BehandelarenOverzicht {
                 agbcodeColumn
         );
 
+        //vullen met data
         updateData();
 
+        //tableview toevoegen
         container.getChildren().add(behandelarenTable);
 
-
+        //form voor het aanmaken van nieuwe behandelaar
         GridPane formGrid = new GridPane();
 
+        //labels
         Label bsnLabel              = new Label("BSN-nummer:");
         Label achternaamLabel       = new Label("Achternaam:");
         Label voorlettersLabel      = new Label("Voorletters:");
@@ -100,23 +96,22 @@ public class BehandelarenOverzicht {
         Label geslachtLabel         = new Label("Geslacht:");
         Label agbcodeLabel          = new Label("AGB-code:");
 
+        //inputs
         TextField bsnField = new TextField();
         TextField achternaamField = new TextField();
         TextField voorlettersField = new TextField();
-        //TextField geboortedatumField = new TextField();
         TextField emailField = new TextField();
         TextField agbcodeField = new TextField();
-
         DatePicker geboortedatumPicker = new DatePicker();
 
+        // geslacht dropdown
         ObservableList<String> geslachtBoxOptions = FXCollections.observableArrayList(
                 "M",
                 "V"
         );
         ComboBox<String> geslachtBox = new ComboBox<>(geslachtBoxOptions);
 
-
-
+        //toevoegen button
         Button addButton = new Button("Toevoegen");
         addButton.setOnAction(actionEvent -> {
 
@@ -125,6 +120,7 @@ public class BehandelarenOverzicht {
             Geslacht geslacht;
             Date geboortedatum;
 
+            //inlezen en parsen van data uit form inputs, geef meldingen bij ongeldige input
             try {
                 bsn = Integer.parseInt(bsnField.getText());
             } catch(NumberFormatException e) {
@@ -144,7 +140,6 @@ public class BehandelarenOverzicht {
             }
 
             achternaam = achternaamField.getText();
-
             if(achternaam.isBlank()) {
                 ErrorDialogController.showError("Ongeldige Invoer", "Voer een achternaam in!");
 
@@ -153,7 +148,6 @@ public class BehandelarenOverzicht {
 
 
             voorletters = voorlettersField.getText();
-
             if(voorletters.isBlank()) {
                 ErrorDialogController.showError("Ongeldige Invoer", "Voer geldige voorletters in!");
 
@@ -161,21 +155,23 @@ public class BehandelarenOverzicht {
             }
 
             email = emailField.getText();
-
             if(email.isBlank()) {
                 ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldig E-mail adres in!");
 
                 return;
             }
 
+            //geen validation nodig, alleen valid opties kunenn gekozen worden
             geslacht = Geslacht.from(geslachtBox.getValue());
 
+            //datepicker value kan null zijn blijkbaar
             if(null == geboortedatumPicker.getValue()) {
                 ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldige datum in!");
 
                 return;
             }
 
+            //datepicker value van localdate naar date omzetten (aaaaaaaaaaaaaaaah)
             geboortedatum = Date.from(
                     geboortedatumPicker
                             .getValue()
@@ -184,6 +180,7 @@ public class BehandelarenOverzicht {
                                 ).toInstant()
             );
 
+            //object maken
             Behandelaar behandelaar = new Behandelaar(
                     bsn,
                     achternaam,
@@ -194,6 +191,7 @@ public class BehandelarenOverzicht {
                     agbcode
             );
 
+            //in database zetten
             try {
                 DAOProvider.getBehandelaarDAO().saveBehandelaar(behandelaar);
             } catch(DatalayerException e) {
@@ -201,10 +199,12 @@ public class BehandelarenOverzicht {
                 e.printStackTrace();
             }
 
+            //tableview data reload
             updateData();
 
-        });
+        }); //eind button functie
 
+        //nieuwe behandelaar form grid
         formGrid.add(bsnLabel,              0, 0);
         formGrid.add(bsnField,              1, 0);
 
@@ -216,7 +216,6 @@ public class BehandelarenOverzicht {
 
         formGrid.add(geboortedatumLabel,    0, 3);
         formGrid.add(geboortedatumPicker,   1, 3);
-        //formGrid.add(geboortedatumField,    1, 3);
 
         formGrid.add(emailLabel,            2, 0);
         formGrid.add(emailField,            3, 0);
@@ -233,8 +232,8 @@ public class BehandelarenOverzicht {
 
     }
 
+    //vul tableview met data
     private void updateData() {
-
         try {
             behandelaren = FXCollections.observableArrayList(
                     DAOProvider.getBehandelaarDAO().getAllBehandelaars()
@@ -248,6 +247,7 @@ public class BehandelarenOverzicht {
 
     }
 
+    //return de gegenereerde pane
     public Node getContent() {
         return container;
     }
