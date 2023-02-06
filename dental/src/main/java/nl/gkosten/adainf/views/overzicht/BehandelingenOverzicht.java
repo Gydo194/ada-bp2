@@ -18,7 +18,7 @@ import nl.gkosten.adainf.views.detail.BehandelingenDetailOverzicht;
 
 public class BehandelingenOverzicht {
     private final VBox container;
-    private final TableView behandelingenTable = new TableView();
+    private final TableView<Behandeling> behandelingenTable = new TableView<>();
     private ObservableList<Behandeling> behandelingen = FXCollections.observableArrayList();
 
     public BehandelingenOverzicht() {
@@ -52,7 +52,7 @@ public class BehandelingenOverzicht {
         //open detailoverzicht bij dubbelklikken
         behandelingenTable.setOnMouseClicked(mouseEvent -> {
             if(mouseEvent.getClickCount() > 1) { //dubbel klik
-                Behandeling current = (Behandeling) behandelingenTable.getSelectionModel().getSelectedItem();
+                Behandeling current = behandelingenTable.getSelectionModel().getSelectedItem();
                 if(null != current) {
                     BehandelingenDetailOverzicht overzicht = new BehandelingenDetailOverzicht(current);
                     Main.addTab(overzicht.getContent(), overzicht.getTitle());
