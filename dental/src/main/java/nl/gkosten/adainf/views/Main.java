@@ -24,7 +24,7 @@ public class Main {
         container.getTabs().add(behandelingenTab);
 
         Tab behandelarenTab = new Tab("Behandelaren");
-        behandelarenTab.setContent(new BehandelarenOverzicht().getContent());
+        behandelarenTab.setContent(BehandelarenOverzicht.getContent());
         behandelarenTab.setClosable(false);
         container.getTabs().add(behandelarenTab);
 

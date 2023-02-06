@@ -18,13 +18,16 @@ import java.time.ZoneId;
 import java.util.Date;
 
 public class BehandelarenOverzicht {
-    private final VBox container;
-    private final TableView behandelarenTable = new TableView();
-    private ObservableList<Behandelaar> behandelaren = FXCollections.observableArrayList();
+    private static final VBox container = new VBox();
+    private static final TableView behandelarenTable = new TableView();
+    private static ObservableList<Behandelaar> behandelaren = FXCollections.observableArrayList();
+
+    private BehandelarenOverzicht() {
+        //verbied gebruik van constructor
+    }
 
     //maak de view
-    public BehandelarenOverzicht() {
-        container = new VBox();
+    static {
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
 
@@ -235,7 +238,7 @@ public class BehandelarenOverzicht {
     }
 
     //vul tableview met data
-    private void updateData() {
+    public static void updateData() {
         try {
             behandelaren = FXCollections.observableArrayList(
                     DAOProvider.getBehandelaarDAO().getAllBehandelaars()
@@ -250,7 +253,7 @@ public class BehandelarenOverzicht {
     }
 
     //return de gegenereerde pane
-    public Node getContent() {
+    public static Node getContent() {
         return container;
     }
 }
