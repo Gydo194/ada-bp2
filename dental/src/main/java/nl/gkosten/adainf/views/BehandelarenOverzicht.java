@@ -13,6 +13,9 @@ package nl.gkosten.adainf.views;
         import nl.gkosten.adainf.datalayer.DAOProvider;
         import nl.gkosten.adainf.datalayer.DatalayerException;
         import nl.gkosten.adainf.models.Behandelaar;
+        import nl.gkosten.adainf.models.Geslacht;
+
+        import java.util.Date;
 
 public class BehandelarenOverzicht {
     private final VBox container;
@@ -83,23 +86,33 @@ public class BehandelarenOverzicht {
 
         GridPane formGrid = new GridPane();
 
-        Label codeLabel = new Label("Code:");
-        TextField codeField = new TextField();
+        Label bsnLabel              = new Label("BSN-nummer:");
+        Label achternaamLabel       = new Label("Achternaam:");
+        Label voorlettersLabel      = new Label("Voorletters:");
+        Label geboortedatumLabel    = new Label("Geboortedatum:");
+        Label emailLabel            = new Label("E-mail:");
+        Label geslachtLabel         = new Label("Geslacht:");
+        Label agbcodeLabel          = new Label("AGB-code:");
 
-        Label omschrijvingLabel = new Label("Omschrijving");
-        TextField omschrijvingField = new TextField();
+        TextField bsnField = new TextField();
+        TextField achternaamField = new TextField();
+        TextField voorlettersField = new TextField();
+        TextField geboortedatumField = new TextField();
+        TextField emailField = new TextField();
+        TextField geslachtField = new TextField();
+        TextField agbcodeField = new TextField();
 
-        Label prijsLabel = new Label("prijs");
-        TextField prijsField = new TextField();
 
         Button addButton = new Button("Toevoegen");
         addButton.setOnAction(actionEvent -> {
-            String code = codeField.getText();
-            String omschrijving = omschrijvingField.getText();
-            double prijs = 0.0D;
+
+            int bsn, agbcode;
+            String achternaam, voorletters, email;
+            Geslacht geslacht;
+            Date geboortedatum;
 
             try {
-                prijs = Double.parseDouble(prijsField.getText());
+                //prijs = Double.parseDouble(prijsField.getText());
             } catch (NumberFormatException e) {
                 ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldig nummer in!");
                 e.printStackTrace();
@@ -122,13 +135,28 @@ public class BehandelarenOverzicht {
 
         });
 
-        formGrid.add(codeLabel,         0, 0);
-        formGrid.add(codeField,         1, 0);
-        formGrid.add(omschrijvingLabel, 0, 1);
-        formGrid.add(omschrijvingField, 1, 1);
-        formGrid.add(prijsLabel,        0, 2);
-        formGrid.add(prijsField,        1, 2);
-        formGrid.add(addButton,         0, 3);
+        formGrid.add(bsnLabel,              0, 0);
+        formGrid.add(bsnField,              1, 0);
+
+        formGrid.add(achternaamLabel,       0, 1);
+        formGrid.add(achternaamField,       1, 1);
+
+        formGrid.add(voorlettersLabel,      0, 2);
+        formGrid.add(voorlettersField,      1, 2);
+
+        formGrid.add(geboortedatumLabel,    0, 3);
+        formGrid.add(geboortedatumField,    1, 3);
+
+        formGrid.add(emailLabel,            0, 4);
+        formGrid.add(emailField,            1, 4);
+
+        formGrid.add(geslachtLabel,         0, 5);
+        formGrid.add(geslachtField,         1, 5);
+
+        formGrid.add(agbcodeLabel,          0, 6);
+        formGrid.add(agbcodeField,          1, 6);
+
+        formGrid.add(addButton,         0, 7);
 
         container.getChildren().add(formGrid);
 
