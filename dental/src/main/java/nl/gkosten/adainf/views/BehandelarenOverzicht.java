@@ -104,8 +104,14 @@ public class BehandelarenOverzicht {
         TextField voorlettersField = new TextField();
         TextField geboortedatumField = new TextField();
         TextField emailField = new TextField();
-        TextField geslachtField = new TextField();
         TextField agbcodeField = new TextField();
+
+        ObservableList<String> geslachtBoxOptions = FXCollections.observableArrayList(
+                "M",
+                "V"
+        );
+        ComboBox geslachtBox = new ComboBox(geslachtBoxOptions);
+
 
 
         Button addButton = new Button("Toevoegen");
@@ -159,12 +165,7 @@ public class BehandelarenOverzicht {
                 return;
             }
 
-           if(!(geslachtField.getText().equals("M") || geslachtField.getText().equals("V"))) {
-               ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldig geslacht in! (M/V)");
-
-               return;
-           }
-           geslacht = Geslacht.from(geslachtField.getText());
+            geslacht = Geslacht.from((String) geslachtBox.getValue());
 
             try {
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -214,7 +215,7 @@ public class BehandelarenOverzicht {
         formGrid.add(emailField,            3, 0);
 
         formGrid.add(geslachtLabel,         2, 1);
-        formGrid.add(geslachtField,         3, 1);
+        formGrid.add(geslachtBox,           3, 1);
 
         formGrid.add(agbcodeLabel,          2, 2);
         formGrid.add(agbcodeField,          3, 2);
