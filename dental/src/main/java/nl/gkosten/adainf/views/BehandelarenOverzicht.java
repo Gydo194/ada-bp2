@@ -19,6 +19,7 @@ package nl.gkosten.adainf.views;
         import java.text.DateFormat;
         import java.text.ParseException;
         import java.text.SimpleDateFormat;
+        import java.time.ZoneId;
         import java.time.format.DateTimeFormatter;
         import java.util.Date;
 
@@ -102,9 +103,11 @@ public class BehandelarenOverzicht {
         TextField bsnField = new TextField();
         TextField achternaamField = new TextField();
         TextField voorlettersField = new TextField();
-        TextField geboortedatumField = new TextField();
+        //TextField geboortedatumField = new TextField();
         TextField emailField = new TextField();
         TextField agbcodeField = new TextField();
+
+        DatePicker geboortedatumPicker = new DatePicker();
 
         ObservableList<String> geslachtBoxOptions = FXCollections.observableArrayList(
                 "M",
@@ -167,16 +170,19 @@ public class BehandelarenOverzicht {
 
             geslacht = Geslacht.from(geslachtBox.getValue());
 
-            try {
-                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                geboortedatum = format.parse(geboortedatumField.getText());
-
-            } catch (ParseException e) {
+            if(null == geboortedatumPicker.getValue()) {
                 ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldige datum in!");
-                e.printStackTrace();
 
                 return;
             }
+
+            geboortedatum = Date.from(
+                    geboortedatumPicker
+                            .getValue()
+                                .atStartOfDay(
+                                        ZoneId.systemDefault()
+                                ).toInstant()
+            );
 
             Behandelaar behandelaar = new Behandelaar(
                     bsn,
@@ -209,7 +215,8 @@ public class BehandelarenOverzicht {
         formGrid.add(voorlettersField,      1, 2);
 
         formGrid.add(geboortedatumLabel,    0, 3);
-        formGrid.add(geboortedatumField,    1, 3);
+        formGrid.add(geboortedatumPicker,   1, 3);
+        //formGrid.add(geboortedatumField,    1, 3);
 
         formGrid.add(emailLabel,            2, 0);
         formGrid.add(emailField,            3, 0);
