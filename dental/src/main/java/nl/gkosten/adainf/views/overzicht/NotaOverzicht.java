@@ -20,11 +20,14 @@ package nl.gkosten.adainf.views.overzicht;
         import java.util.Date;
 
 public class NotaOverzicht {
-    private final VBox container;
-    private final TableView notaTable = new TableView();
-    private ObservableList<Nota> nota = FXCollections.observableArrayList();
+    private static final VBox container;
+    private static final TableView notaTable = new TableView();
+    private static ObservableList<Nota> nota = FXCollections.observableArrayList();
 
-    public NotaOverzicht() {
+    private NotaOverzicht() {
+    }
+
+    static {
         container = new VBox();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
@@ -231,7 +234,7 @@ public class NotaOverzicht {
 
     }
 
-    private void updateData() {
+    public static void updateData() {
 
         try {
             nota = FXCollections.observableArrayList(
@@ -246,7 +249,7 @@ public class NotaOverzicht {
 
     }
 
-    public Node getContent() {
+    public static Node getContent() {
         return container;
     }
 }

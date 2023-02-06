@@ -29,7 +29,7 @@ public class Main {
         container.getTabs().add(behandelarenTab);
 
         Tab notaTab = new Tab("Nota's");
-        notaTab.setContent(new NotaOverzicht().getContent());
+        notaTab.setContent(NotaOverzicht.getContent());
         notaTab.setClosable(false);
         container.getTabs().add(notaTab);
 
