@@ -110,7 +110,7 @@ public class BehandelarenOverzicht {
                 "M",
                 "V"
         );
-        ComboBox geslachtBox = new ComboBox(geslachtBoxOptions);
+        ComboBox<String> geslachtBox = new ComboBox<>(geslachtBoxOptions);
 
 
 
@@ -165,7 +165,7 @@ public class BehandelarenOverzicht {
                 return;
             }
 
-            geslacht = Geslacht.from((String) geslachtBox.getValue());
+            geslacht = Geslacht.from(geslachtBox.getValue());
 
             try {
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
