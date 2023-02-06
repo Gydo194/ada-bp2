@@ -49,11 +49,13 @@ public class BehandelingenOverzicht {
                 new PropertyValueFactory<>("prijs")
         );
 
+        //open detailoverzicht bij dubbelklikken
         behandelingenTable.setOnMouseClicked(mouseEvent -> {
             if(mouseEvent.getClickCount() > 1) { //dubbel klik
                 Behandeling current = (Behandeling) behandelingenTable.getSelectionModel().getSelectedItem();
                 if(null != current) {
-                    Main.addTab(new BehandelingenDetailOverzicht(current).getContent(), "Wijzig Behandeling");
+                    BehandelingenDetailOverzicht overzicht = new BehandelingenDetailOverzicht(current);
+                    Main.addTab(overzicht.getContent(), overzicht.getTitle());
                 }
             }
         });
