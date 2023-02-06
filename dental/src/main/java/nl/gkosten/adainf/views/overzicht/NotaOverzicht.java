@@ -241,7 +241,7 @@ public class NotaOverzicht {
                     DAOProvider.getNotaDAO().getAllNotas()
             );
         } catch (DatalayerException e) {
-            ErrorDialogController.showError("Database fout", "Er is een fout opgetreden tijdens het laden van nota.");
+            ErrorDialogController.showError("Database fout", "Er is een fout opgetreden tijdens het laden van de nota's.");
             e.printStackTrace();
         }
 
