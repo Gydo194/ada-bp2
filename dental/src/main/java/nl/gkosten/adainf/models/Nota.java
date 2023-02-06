@@ -47,6 +47,10 @@ public class Nota {
         return einddatum;
     }
 
+    public double getPrijs() {
+        return behandeling.getPrijs();
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Nota{");

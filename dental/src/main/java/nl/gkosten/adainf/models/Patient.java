@@ -19,4 +19,9 @@ public class Patient extends Persoon {
     public void setRelatienummer(int relatienummer) {
         this.relatienummer = relatienummer;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s", getAchternaam(), getVoorletters());
+    }
 }

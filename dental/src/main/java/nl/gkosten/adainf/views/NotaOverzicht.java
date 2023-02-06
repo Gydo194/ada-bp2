@@ -32,14 +32,29 @@ public class NotaOverzicht {
         notaTable.setEditable(true);
 
 
-        TableColumn codeColumn = new TableColumn("Code");
-        codeColumn.setCellValueFactory(
-                new PropertyValueFactory<>("code")
+        TableColumn nummerColumn = new TableColumn("Notanummer");
+        nummerColumn.setCellValueFactory(
+                new PropertyValueFactory<>("nummer")
         );
 
-        TableColumn omschrijvingColumn = new TableColumn("Omschrijving");
-        omschrijvingColumn.setCellValueFactory(
-                new PropertyValueFactory<>("omschrijving")
+        TableColumn patientColumn = new TableColumn("Patient");
+        patientColumn.setCellValueFactory(
+                new PropertyValueFactory<>("patient")
+        );
+
+        TableColumn behandelingColumn = new TableColumn("Behandeling");
+        behandelingColumn.setCellValueFactory(
+                new PropertyValueFactory<>("behandeling")
+        );
+
+        TableColumn startdatumColumn = new TableColumn("Startdatum");
+        startdatumColumn.setCellValueFactory(
+                new PropertyValueFactory<>("startdatum")
+        );
+
+        TableColumn einddatumColumn = new TableColumn("Einddatum");
+        einddatumColumn.setCellValueFactory(
+                new PropertyValueFactory<>("einddatum")
         );
 
         TableColumn prijsColumn = new TableColumn("Prijs");
@@ -47,9 +62,15 @@ public class NotaOverzicht {
                 new PropertyValueFactory<>("prijs")
         );
 
+
+
+
         notaTable.getColumns().addAll(
-                codeColumn,
-                omschrijvingColumn,
+                nummerColumn,
+                patientColumn,
+                behandelingColumn,
+                startdatumColumn,
+                einddatumColumn,
                 prijsColumn
         );
 
