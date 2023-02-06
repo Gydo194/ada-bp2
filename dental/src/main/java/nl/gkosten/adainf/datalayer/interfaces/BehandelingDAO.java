@@ -12,4 +12,9 @@ public interface BehandelingDAO {
     public Behandeling getBehandeling(String code) throws DatalayerException;
 
     public void saveBehandeling(Behandeling behandeling) throws DatalayerException;
+
+    public void updateBehandeling(Behandeling behandeling) throws DatalayerException;
+
+    public void deleteBehandeling(Behandeling behandeling) throws DatalayerException;
+
 }

@@ -93,4 +93,44 @@ public class MysqlBehandelingDAO implements BehandelingDAO {
             throw new DatalayerException();
         }
     }
+
+    @Override
+    public void updateBehandeling(Behandeling behandeling) throws DatalayerException {
+        try {
+            String query = String.format(
+                    "UPDATE behandeling SET prijs = %f, omschrijving = '%s' WHERE behandelingscode = '%s';",
+                    behandeling.getPrijs(),
+                    behandeling.getOmschrijving(),
+                    behandeling.getCode()
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+            statement.execute(query);
+
+        } catch (SQLException sqlException) {
+            System.out.printf("MysqlBehandelingDao::updateBehandeling(): SQLexception: %s\n", sqlException.getMessage());
+            sqlException.printStackTrace();
+
+            throw new DatalayerException();
+        }
+    }
+
+    @Override
+    public void deleteBehandeling(Behandeling behandeling) throws DatalayerException {
+        try {
+            String query = String.format(
+                    "DELETE FROM behandeling WHERE behandelingscode = '%s';",
+                    behandeling.getCode()
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+            statement.execute(query);
+
+        } catch (SQLException sqlException) {
+            System.out.printf("MysqlBehandelingDao::deleteBehandeling(): SQLexception: %s\n", sqlException.getMessage());
+            sqlException.printStackTrace();
+
+            throw new DatalayerException();
+        }
+    }
 }

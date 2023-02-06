@@ -9,12 +9,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import nl.gkosten.adainf.App;
 import nl.gkosten.adainf.controllers.ErrorDialogController;
+import nl.gkosten.adainf.datalayer.DAOProvider;
+import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandeling;
-import nl.gkosten.adainf.views.overzicht.BehandelingenOverzicht;
 
 public class BehandelingenDetailOverzicht {
-    private Behandeling behandeling;
-    private VBox container;
+    private final Behandeling behandeling;
+    private final VBox container;
 
     public BehandelingenDetailOverzicht(Behandeling behandeling) {
         this.behandeling = behandeling;
@@ -92,22 +93,30 @@ public class BehandelingenDetailOverzicht {
             System.out.println("UPDATE:");
             System.out.println(updated);
 
-
-        });
-
-        deleteButton.setOnAction(actionEvent -> {
-            String behandelingscode;
-
-            behandelingscode = codeField.getText();
-            if(behandelingscode.isBlank()) {
-                ErrorDialogController.showError("Ongeldige Invoer", "Voer een behandelingscode in.");
+            try {
+                DAOProvider.getBehandelingDAO().updateBehandeling(updated);
+            } catch (DatalayerException e) {
+                ErrorDialogController.showError("Database fout", "Er is iets misgegaan bij het wijzigen.");
+                e.printStackTrace();
 
                 return;
             }
 
-            System.out.println("DELETE:");
-            System.out.println(behandelingscode);
+            ErrorDialogController.showDialog("Item gewijzigd", "De behandeling is gewijzigd.");
 
+        });
+
+        deleteButton.setOnAction(actionEvent -> {
+            try {
+                DAOProvider.getBehandelingDAO().deleteBehandeling(behandeling);
+            } catch (DatalayerException e) {
+                ErrorDialogController.showError("Database fout", "Er is iets misgegaan bij het verwijderen.");
+                e.printStackTrace();
+
+                return;
+            }
+
+            ErrorDialogController.showDialog("Item verwijderd", "De behandeling is verwijderd.");
         });
 
     }

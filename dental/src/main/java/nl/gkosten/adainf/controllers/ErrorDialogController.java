@@ -12,4 +12,14 @@ public class ErrorDialogController {
         //wacht tot gesloten
         errorAlert.showAndWait();
     }
+
+    //normale dialog
+    public static void showDialog(String header, String msg) {
+        Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
+        errorAlert.setHeaderText(header);
+        errorAlert.setContentText(msg);
+
+        //wacht tot gesloten
+        errorAlert.showAndWait();
+    }
 }
