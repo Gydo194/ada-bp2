@@ -108,6 +108,8 @@ public class MysqlNotaDAO implements NotaDAO {
                     nota.getNummer()
             );
 
+            System.out.println(query);
+
             Statement statement = StatementFactory.getInstance().createStatement();
             statement.execute(query);
 

@@ -162,7 +162,7 @@ public class NotaDetail {
                             einddatum
                     );
 
-                    DAOProvider.getNotaDAO().updateNota(nota);
+                    DAOProvider.getNotaDAO().updateNota(updated);
 
             } catch (DatalayerException e) {
                 ErrorDialogController.showError("Database fout", "Er is iets misgegaan bij het wijzigen.");
