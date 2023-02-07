@@ -54,6 +54,7 @@ public class NotaDetail {
 
         Button updateButton = new Button("Opslaan");
         Button deleteButton = new Button("Verwijderen");
+        Button submitButton = new Button("Nota declareren");
 
         GridPane formGrid = new GridPane();
         formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
@@ -79,6 +80,7 @@ public class NotaDetail {
 
         formGrid.add(updateButton,         0, 6);
         formGrid.add(deleteButton,         1, 6);
+        formGrid.add(submitButton,         0, 7);
 
         container.getChildren().add(formGrid);
 
@@ -190,6 +192,10 @@ public class NotaDetail {
             NotaOverzicht.updateData();
             Main.closeTab(getTitle());
             Main.activateTab("Nota");
+        });
+
+        submitButton.setOnAction(actionEvent -> {
+            ErrorDialogController.showDialog("Verstuurd", "De nota is verstuurd naar Vecozo.");
         });
 
     }
