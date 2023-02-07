@@ -16,7 +16,8 @@ package nl.gkosten.adainf.views.overzicht;
         import nl.gkosten.adainf.models.Behandeling;
         import nl.gkosten.adainf.models.Geslacht;
         import nl.gkosten.adainf.views.Main;
-       // import nl.gkosten.adainf.views.detail.PatientenDetailOverzicht;
+        import nl.gkosten.adainf.views.detail.PatientenDetail;
+        // import nl.gkosten.adainf.views.detail.PatientenDetailOverzicht;
 
         import java.time.ZoneId;
         import java.util.Date;
@@ -87,17 +88,15 @@ public class PatientenOverzicht {
 
 
         //open detailoverzicht bij dubbelklikken
-        /*
         behandelarenTable.setOnMouseClicked(mouseEvent -> {
             if(mouseEvent.getClickCount() > 1) { //dubbel klik
                 Patient current = behandelarenTable.getSelectionModel().getSelectedItem();
                 if(null != current) {
-                    PatientenDetailOverzicht overzicht = new PatientenDetailOverzicht(current);
+                    PatientenDetail overzicht = new PatientenDetail(current);
                     Main.addTab(overzicht.getContent(), overzicht.getTitle());
                 }
             }
         });
-        */
 
         //vullen met data
         updateData();
