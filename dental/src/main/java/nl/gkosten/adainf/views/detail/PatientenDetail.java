@@ -1,32 +1,32 @@
 package nl.gkosten.adainf.views.detail;
 
-        import javafx.collections.FXCollections;
-        import javafx.collections.ObservableList;
-        import javafx.scene.Node;
-        import javafx.scene.control.*;
-        import javafx.scene.layout.GridPane;
-        import javafx.scene.layout.VBox;
-        import javafx.scene.text.Text;
-        import nl.gkosten.adainf.App;
-        import nl.gkosten.adainf.controllers.ErrorDialogController;
-        import nl.gkosten.adainf.datalayer.DAOProvider;
-        import nl.gkosten.adainf.datalayer.DatalayerException;
-        import nl.gkosten.adainf.models.Behandelaar;
-        import nl.gkosten.adainf.models.Geslacht;
-        import nl.gkosten.adainf.views.Main;
-        import nl.gkosten.adainf.views.overzicht.BehandelarenOverzicht;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import nl.gkosten.adainf.App;
+import nl.gkosten.adainf.controllers.ErrorDialogController;
+import nl.gkosten.adainf.datalayer.DAOProvider;
+import nl.gkosten.adainf.datalayer.DatalayerException;
+import nl.gkosten.adainf.models.Patient;
+import nl.gkosten.adainf.models.Geslacht;
+import nl.gkosten.adainf.views.Main;
+import nl.gkosten.adainf.views.overzicht.PatientenOverzicht;
 
-        import java.time.Instant;
-        import java.time.LocalDate;
-        import java.time.ZoneId;
-        import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
-public class BehandelarenDetailOverzicht {
-    private final Behandelaar behandelaar;
+public class PatientenDetail {
+    private final Patient patient;
     private final VBox container;
 
-    public BehandelarenDetailOverzicht(Behandelaar behandelaar) {
-        this.behandelaar = behandelaar;
+    public PatientenDetail(Patient patient) {
+        this.patient = patient;
 
         container = new VBox();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
@@ -41,13 +41,13 @@ public class BehandelarenDetailOverzicht {
         Label geboortedatumLabel = new Label("Geboortedatum:");
         Label emailLabel = new Label("E-mail:");
         Label geslachtLabel = new Label("Geslacht:");
-        Label agbcodeLabel = new Label("AGB-code:");
+        Label relatienummerLabel = new Label("Relatienummer:");
 
-        Label bsnField = new Label(String.format("%d", behandelaar.getBsn())); //code kan niet worden aangepast
+        Label bsnField = new Label(String.format("%d", patient.getBsn())); //code kan niet worden aangepast
         TextField achternaamField = new TextField();
         TextField voorlettersField = new TextField();
         TextField emailField = new TextField();
-        TextField agbcodeField = new TextField();
+        TextField relatienummerField = new TextField();
         DatePicker geboortedatumPicker = new DatePicker();
 
         // geslacht dropdown
@@ -89,8 +89,8 @@ public class BehandelarenDetailOverzicht {
         formGrid.add(geslachtLabel,         0, 5);
         formGrid.add(geslachtBox,           1, 5);
 
-        formGrid.add(agbcodeLabel,          0, 6);
-        formGrid.add(agbcodeField,          1, 6);
+        formGrid.add(relatienummerLabel,          0, 6);
+        formGrid.add(relatienummerField,          1, 6);
 
         formGrid.add(updateButton,          0, 7);
         formGrid.add(deleteButton,          1, 7);
@@ -100,30 +100,31 @@ public class BehandelarenDetailOverzicht {
 
 
         //populate inputs
-        bsnField.setText(String.format("%d", behandelaar.getBsn()));
-        achternaamField.setText(behandelaar.getAchternaam());
-        voorlettersField.setText(behandelaar.getVoorletters());
-        emailField.setText(behandelaar.getEmail());
-        agbcodeField.setText(String.format("%d", behandelaar.getAgbcode()));
-        geslachtBox.getSelectionModel().select(behandelaar.getGeslacht().toString());
+        bsnField.setText(String.format("%d", patient.getBsn()));
+        achternaamField.setText(patient.getAchternaam());
+        voorlettersField.setText(patient.getVoorletters());
+        emailField.setText(patient.getEmail());
+        relatienummerField.setText(String.format("%d", patient.getRelatienummer()));
+        geslachtBox.getSelectionModel().select(patient.getGeslacht().toString());
         geboortedatumPicker.setValue( //aaaaaaaaaaaaaaaaaaaaaaaa
                 Instant.ofEpochMilli(
-                        behandelaar.getGeboortedatum()
-                                .getTime()).atZone(ZoneId.systemDefault())
-                                    .toLocalDate()
+                                patient.getGeboortedatum()
+                                        .getTime()).atZone(ZoneId.systemDefault())
+                        .toLocalDate()
         );
 
         updateButton.setOnAction(actionEvent -> {
+            /*
 
-            int agbcode;
+            int relatienummer;
             String achternaam, voorletters, email;
             Geslacht geslacht;
             Date geboortedatum;
 
             try {
-                agbcode = Integer.parseInt(agbcodeField.getText());
+                relatienummer = Integer.parseInt(relatienummerField.getText());
             } catch (NumberFormatException e) {
-                ErrorDialogController.showDialog("Ongeldige Invoer", "Voer een geldige AGB-code in!");
+                ErrorDialogController.showDialog("Ongeldige Invoer", "Voer een geldig relatienummer in!");
                 e.printStackTrace();
 
                 return;
@@ -170,18 +171,18 @@ public class BehandelarenDetailOverzicht {
 
 
 
-            Behandelaar updated = new Behandelaar(
-                    behandelaar.getBsn(),
+            Patient updated = new Patient(
+                    patient.getBsn(),
                     achternaam,
                     voorletters,
                     geboortedatum,
                     email,
                     geslacht,
-                    agbcode
+                    relatienummer
             );
 
             try {
-                DAOProvider.getBehandelaarDAO().updateBehandelaar(updated);
+                DAOProvider.getPatientDAO().updatePatient(updated);
             } catch (DatalayerException e) {
                 ErrorDialogController.showError("Database fout", "Er is iets misgegaan bij het wijzigen.");
                 e.printStackTrace();
@@ -189,13 +190,16 @@ public class BehandelarenDetailOverzicht {
                 return;
             }
 
-            ErrorDialogController.showDialog("Item gewijzigd", "De behandelaar is gewijzigd.");
-            BehandelarenOverzicht.updateData();
+            */
+
+            ErrorDialogController.showDialog("Item gewijzigd", "De patient is gewijzigd.");
+            PatientenOverzicht.updateData();
         });
 
         deleteButton.setOnAction(actionEvent -> {
+            /*
             try {
-                DAOProvider.getBehandelaarDAO().deleteBehandelaar(behandelaar);
+                DAOProvider.getPatientDAO().deletePatient(patient);
             } catch (DatalayerException e) {
                 ErrorDialogController.showError("Database fout", "Er is iets misgegaan bij het verwijderen.");
                 e.printStackTrace();
@@ -203,10 +207,11 @@ public class BehandelarenDetailOverzicht {
                 return;
             }
 
-            ErrorDialogController.showDialog("Item verwijderd", "De behandelaar is verwijderd.");
-            BehandelarenOverzicht.updateData();
+            ErrorDialogController.showDialog("Item verwijderd", "De patient is verwijderd.");
+            PatientenOverzicht.updateData();
             Main.closeTab(getTitle());
-            Main.activateTab("Behandelaren");
+            Main.activateTab("Patienten");
+            */
         });
 
     }
@@ -216,7 +221,7 @@ public class BehandelarenDetailOverzicht {
     }
 
     public String getTitle() {
-        return String.format("Behandelaar %s, %s", behandelaar.getAchternaam(), behandelaar.getVoorletters());
+        return String.format("Patient %s, %s", patient.getAchternaam(), patient.getVoorletters());
     }
 
 }
