@@ -9,6 +9,9 @@ import nl.gkosten.adainf.views.overzicht.BehandelarenOverzicht;
 import nl.gkosten.adainf.views.overzicht.BehandelingenOverzicht;
 import nl.gkosten.adainf.views.overzicht.NotaOverzicht;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     private final Scene homeScene;
     private static TabPane container;
@@ -45,6 +48,29 @@ public class Main {
 
         container.getTabs().add(tab);
         container.getSelectionModel().select(tab);
+    }
+
+    public static void closeTab(String title) {
+        List<Tab> toRemove = new ArrayList<>();
+
+        for(Tab tab : container.getTabs()) {
+            if(tab.getText().equals(title)) {
+                toRemove.add(tab);
+            }
+        }
+
+        //run outside of foreach because of concurrentmodificationexception
+        for(Tab tabToRemove : toRemove) {
+            container.getTabs().remove(tabToRemove);
+        }
+    }
+
+    public static void activateTab(String title) {
+        for(Tab tab : container.getTabs()) {
+            if(tab.getText().equals(title)) {
+                container.getSelectionModel().select(tab);
+            }
+        }
     }
 
     public Scene getHomeScene() {
