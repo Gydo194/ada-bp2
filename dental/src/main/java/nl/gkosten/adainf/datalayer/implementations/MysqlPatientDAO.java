@@ -96,4 +96,46 @@ public class MysqlPatientDAO implements PatientDAO {
             throw new DatalayerException("MysqlPatientDao::savePatient(): SQLexception: %s\n", sqlException);
         }
     }
+
+    @Override
+    public void updatePatient(Patient patient) throws DatalayerException {
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String query = String.format(
+                    "UPDATE persoon SET achternaam = '%s', voorletters = '%s', geboortedatum = '%s', email = '%s', geslacht = '%s', relatienummer = %d WHERE type = 'PATIENT' AND bsn = %d;",
+                    patient.getAchternaam(),
+                    patient.getVoorletters(),
+                    formatter.format(patient.getGeboortedatum()),
+                    patient.getEmail(),
+                    patient.getGeslacht().toShortRepresentation(),
+                    patient.getRelatienummer(),
+                    patient.getBsn()
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+            statement.execute(query);
+
+        } catch (SQLException sqlException) {
+            throw new DatalayerException("MysqlPatientDao::savePatient(): SQLexception: %s\n", sqlException);
+        }
+
+    }
+
+    @Override
+    public void deletePatient(Patient patient) throws DatalayerException {
+        try {
+            String query = String.format(
+                    "DELETE FROM persoon WHERE bsn = %d AND type = 'PATIENT';",
+                    patient.getBsn()
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+            statement.execute(query);
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            throw new DatalayerException("MysqlPatientDao::deletePatient(): SQLexception", sqlException);
+        }
+
+    }
 }

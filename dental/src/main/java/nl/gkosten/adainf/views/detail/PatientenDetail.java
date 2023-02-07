@@ -114,7 +114,6 @@ public class PatientenDetail {
         );
 
         updateButton.setOnAction(actionEvent -> {
-            /*
 
             int relatienummer;
             String achternaam, voorletters, email;
@@ -190,14 +189,13 @@ public class PatientenDetail {
                 return;
             }
 
-            */
 
             ErrorDialogController.showDialog("Item gewijzigd", "De patient is gewijzigd.");
             PatientenOverzicht.updateData();
+
         });
 
         deleteButton.setOnAction(actionEvent -> {
-            /*
             try {
                 DAOProvider.getPatientDAO().deletePatient(patient);
             } catch (DatalayerException e) {
@@ -211,7 +209,6 @@ public class PatientenDetail {
             PatientenOverzicht.updateData();
             Main.closeTab(getTitle());
             Main.activateTab("Patienten");
-            */
         });
 
     }
