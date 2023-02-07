@@ -12,4 +12,9 @@ public interface NotaDAO {
     public Nota getNota(int nummer) throws DatalayerException;
 
     public void saveNota(Nota nota) throws DatalayerException;
+
+    public void updateNota(Nota nota) throws DatalayerException;
+
+    public void deleteNota(Nota nota) throws DatalayerException;
+
 }

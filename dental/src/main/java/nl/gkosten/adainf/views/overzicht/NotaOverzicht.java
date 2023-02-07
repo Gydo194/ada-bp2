@@ -15,13 +15,15 @@ package nl.gkosten.adainf.views.overzicht;
         import nl.gkosten.adainf.models.Behandeling;
         import nl.gkosten.adainf.models.Nota;
         import nl.gkosten.adainf.models.Patient;
+        import nl.gkosten.adainf.views.Main;
+        import nl.gkosten.adainf.views.detail.NotaDetail;
 
         import java.time.ZoneId;
         import java.util.Date;
 
 public class NotaOverzicht {
     private static final VBox container;
-    private static final TableView notaTable = new TableView();
+    private static final TableView<Nota> notaTable = new TableView();
     private static ObservableList<Nota> nota = FXCollections.observableArrayList();
 
     private NotaOverzicht() {
@@ -81,6 +83,17 @@ public class NotaOverzicht {
                 einddatumColumn,
                 prijsColumn
         );
+
+        //open detailoverzicht bij dubbelklikken
+        notaTable.setOnMouseClicked(mouseEvent -> {
+            if(mouseEvent.getClickCount() > 1) { //dubbel klik
+                Nota current = notaTable.getSelectionModel().getSelectedItem();
+                if(null != current) {
+                    NotaDetail overzicht = new NotaDetail(current);
+                    Main.addTab(overzicht.getContent(), overzicht.getTitle());
+                }
+            }
+        });
 
         updateData();
 

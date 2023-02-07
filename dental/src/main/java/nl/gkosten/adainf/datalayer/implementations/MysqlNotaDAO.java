@@ -94,4 +94,43 @@ public class MysqlNotaDAO implements NotaDAO {
             throw new DatalayerException(sqlException);
         }
     }
+
+    @Override
+    public void updateNota(Nota nota) throws DatalayerException {
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String query = String.format(
+                    "UPDATE nota SET patient = %d, behandeling = '%s', startdatum = '%s', einddatum = '%s' WHERE notanummer = %d;",
+                    nota.getPatient().getBsn(),
+                    nota.getBehandeling().getCode(),
+                    formatter.format(nota.getStartdatum()),
+                    formatter.format(nota.getEinddatum()),
+                    nota.getNummer()
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+            statement.execute(query);
+
+        } catch (SQLException sqlException) {
+            throw new DatalayerException(sqlException);
+        }
+
+    }
+
+    @Override
+    public void deleteNota(Nota nota) throws DatalayerException {
+        try {
+            String query = String.format(
+                    "DELETE FROM nota WHERE notanummer = %d;",
+                    nota.getNummer()
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+            statement.execute(query);
+
+        } catch (SQLException sqlException) {
+            throw new DatalayerException(sqlException);
+        }
+
+    }
 }
