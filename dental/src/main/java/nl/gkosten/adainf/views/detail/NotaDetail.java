@@ -2,6 +2,7 @@ package nl.gkosten.adainf.views.detail;
 
         import javafx.scene.Node;
         import javafx.scene.control.Button;
+        import javafx.scene.control.DatePicker;
         import javafx.scene.control.Label;
         import javafx.scene.control.TextField;
         import javafx.scene.layout.GridPane;
@@ -30,12 +31,18 @@ public class NotaDetail {
         container.getChildren().add(title);
 
         Label notanummerLabel = new Label("Notanummer:");
-        Label omschrijvingLabel = new Label("Behandeling:");
+        Label patientLabel = new Label("Patient:");
+        Label startdatumLabel = new Label("Startdatum:");
+        Label einddatumLabel = new Label("Einddatum:");
+        Label behandelingLabel = new Label("Behandeling:");
         Label prijsLabel = new Label("Prijs:");
 
         Label notanummerField = new Label(String.format("%d", nota.getNummer())); //notanummer kan niet worden aangepast
-        TextField prijsField = new TextField();
-        TextField omschrijvingField = new TextField();
+        TextField patientField = new TextField();
+        DatePicker startdatumPicker = new DatePicker();
+        DatePicker einddatumPicker = new DatePicker();
+        TextField behandelingField = new TextField();
+        Label prijsField = new Label(String.format("%.02f", nota.getBehandeling().getPrijs()));
 
         Button updateButton = new Button("Opslaan");
         Button deleteButton = new Button("Verwijderen");
@@ -43,14 +50,27 @@ public class NotaDetail {
         GridPane formGrid = new GridPane();
         formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
 
-        formGrid.add(notanummerLabel,             0, 0);
-        formGrid.add(notanummerField,             1, 0);
-        formGrid.add(prijsLabel,            0, 1);
-        formGrid.add(prijsField,            1, 1);
-        formGrid.add(omschrijvingLabel,     0, 2);
-        formGrid.add(omschrijvingField,     1, 2);
-        formGrid.add(updateButton,          0, 3);
-        formGrid.add(deleteButton,          1, 3);
+        formGrid.add(notanummerLabel,      0, 0);
+        formGrid.add(notanummerField,      1, 0);
+
+        formGrid.add(patientLabel,         0, 1);
+        formGrid.add(patientField,         1, 1);
+
+        formGrid.add(startdatumLabel,      0, 2);
+        formGrid.add(startdatumPicker,     1, 2);
+
+        formGrid.add(einddatumLabel,       0, 3);
+        formGrid.add(einddatumPicker,      1, 3);
+
+        formGrid.add(behandelingLabel,     0, 4);
+        formGrid.add(behandelingField,     1, 4);
+
+        formGrid.add(prijsLabel,           0, 5);
+        formGrid.add(prijsField,           1, 5);
+
+
+        formGrid.add(updateButton,         0, 6);
+        formGrid.add(deleteButton,         1, 6);
 
         container.getChildren().add(formGrid);
 
@@ -60,7 +80,7 @@ public class NotaDetail {
 
         notanummerField.setText(String.format("%d", nota.getNummer()));
         prijsField.setText(String.format("%.02f", nota.getPrijs()));
-        omschrijvingField.setText(nota.getBehandeling().getCode());
+        behandelingField.setText(nota.getBehandeling().getCode());
 
         updateButton.setOnAction(actionEvent -> {
 
