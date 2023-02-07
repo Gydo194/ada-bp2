@@ -8,6 +8,7 @@ import nl.gkosten.adainf.App;
 import nl.gkosten.adainf.views.overzicht.BehandelarenOverzicht;
 import nl.gkosten.adainf.views.overzicht.BehandelingenOverzicht;
 import nl.gkosten.adainf.views.overzicht.NotaOverzicht;
+import nl.gkosten.adainf.views.overzicht.PatientenOverzicht;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,11 @@ public class Main {
         behandelarenTab.setContent(BehandelarenOverzicht.getContent());
         behandelarenTab.setClosable(false);
         container.getTabs().add(behandelarenTab);
+
+        Tab patientenTab = new Tab("Patienten");
+        patientenTab.setContent(PatientenOverzicht.getContent());
+        patientenTab.setClosable(false);
+        container.getTabs().add(patientenTab);
 
         Tab notaTab = new Tab("Nota's");
         notaTab.setContent(NotaOverzicht.getContent());
