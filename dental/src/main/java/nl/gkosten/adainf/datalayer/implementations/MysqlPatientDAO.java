@@ -64,12 +64,15 @@ public class MysqlPatientDAO implements PatientDAO {
             Statement statement = StatementFactory.getInstance().createStatement();
             ResultSet result = statement.executeQuery(query);
 
-            return instantiateFromQueryResults(result).get(0);
+            List<Patient> results = instantiateFromQueryResults(result);
+            if(results.isEmpty()) {
+                throw new DatalayerException("getAllPatients(): No Results");
+            }
+
+            return results.get(0);
 
         } catch (SQLException sqlException) {
-            throw new DatalayerException("getAllPatients(): SQLexception:", sqlException);
-        } catch (IndexOutOfBoundsException e) {
-            throw new DatalayerException("getAllPatients(): No Results", e); //TODO
+            throw new DatalayerException("MysqlPatientDAO::getPatient(): SQLexception:", sqlException);
         }
 
     }
@@ -85,12 +88,15 @@ public class MysqlPatientDAO implements PatientDAO {
             Statement statement = StatementFactory.getInstance().createStatement();
             ResultSet result = statement.executeQuery(query);
 
-            return instantiateFromQueryResults(result).get(0);
+            List<Patient> results = instantiateFromQueryResults(result);
+            if(results.isEmpty()) {
+                throw new DatalayerException("MysqlPatientDAO::getPatientByRelNr(): No Results");
+            }
+
+            return results.get(0);
 
         } catch (SQLException sqlException) {
             throw new DatalayerException("getAllPatients(): SQLexception:", sqlException);
-        } catch (IndexOutOfBoundsException e) {
-            throw new DatalayerException("getAllPatients(): No Results", e); //TODO
         }
     }
 
