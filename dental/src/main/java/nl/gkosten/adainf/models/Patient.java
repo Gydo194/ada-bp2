@@ -22,6 +22,6 @@ public class Patient extends Persoon {
 
     @Override
     public String toString() {
-        return String.format("%s, %s", getAchternaam(), getVoorletters());
+        return String.format("%s, %s %d", getAchternaam(), getVoorletters(), getRelatienummer());
     }
 }
