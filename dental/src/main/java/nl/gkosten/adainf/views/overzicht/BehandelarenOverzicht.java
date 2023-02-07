@@ -13,13 +13,17 @@ import nl.gkosten.adainf.controllers.ErrorDialogController;
 import nl.gkosten.adainf.datalayer.DAOProvider;
 import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandelaar;
+import nl.gkosten.adainf.models.Behandeling;
 import nl.gkosten.adainf.models.Geslacht;
+import nl.gkosten.adainf.views.Main;
+import nl.gkosten.adainf.views.detail.BehandelarenDetailOverzicht;
+
 import java.time.ZoneId;
 import java.util.Date;
 
 public class BehandelarenOverzicht {
     private static final VBox container = new VBox();
-    private static final TableView behandelarenTable = new TableView();
+    private static final TableView<Behandelaar> behandelarenTable = new TableView();
     private static ObservableList<Behandelaar> behandelaren = FXCollections.observableArrayList();
 
     private BehandelarenOverzicht() {
@@ -80,6 +84,18 @@ public class BehandelarenOverzicht {
                 geslachtColumn,
                 agbcodeColumn
         );
+
+
+        //open detailoverzicht bij dubbelklikken
+        behandelarenTable.setOnMouseClicked(mouseEvent -> {
+            if(mouseEvent.getClickCount() > 1) { //dubbel klik
+                Behandelaar current = behandelarenTable.getSelectionModel().getSelectedItem();
+                if(null != current) {
+                    BehandelarenDetailOverzicht overzicht = new BehandelarenDetailOverzicht(current);
+                    Main.addTab(overzicht.getContent(), overzicht.getTitle());
+                }
+            }
+        });
 
         //vullen met data
         updateData();
