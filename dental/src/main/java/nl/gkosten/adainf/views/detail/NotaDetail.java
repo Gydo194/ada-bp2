@@ -12,12 +12,17 @@ package nl.gkosten.adainf.views.detail;
         import nl.gkosten.adainf.controllers.ErrorDialogController;
         import nl.gkosten.adainf.datalayer.DAOProvider;
         import nl.gkosten.adainf.datalayer.DatalayerException;
+        import nl.gkosten.adainf.models.Behandeling;
         import nl.gkosten.adainf.models.Nota;
+        import nl.gkosten.adainf.models.Patient;
+        import nl.gkosten.adainf.models.Persoon;
         import nl.gkosten.adainf.views.Main;
+        import nl.gkosten.adainf.views.overzicht.BehandelingenOverzicht;
         import nl.gkosten.adainf.views.overzicht.NotaOverzicht;
 
         import java.time.Instant;
         import java.time.ZoneId;
+        import java.util.Date;
 
 public class NotaDetail {
     private final Nota nota;
@@ -106,6 +111,65 @@ public class NotaDetail {
         behandelingField.setText(nota.getBehandeling().getCode());
 
         updateButton.setOnAction(actionEvent -> {
+
+            int relatienummer;
+            String behandelingscode;
+            Date startdatum, einddatum;
+
+            try {
+                relatienummer = Integer.parseInt(patientField.getText());
+            } catch (NumberFormatException e) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldig relatienummer in!");
+                e.printStackTrace();
+
+                return;
+            }
+
+            behandelingscode = behandelingField.getText();
+            if(behandelingscode.isBlank()) {
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldige behandelingscode in!");
+
+                return;
+            }
+
+
+            startdatum = Date.from(
+                    startdatumPicker
+                            .getValue()
+                            .atStartOfDay(
+                                    ZoneId.systemDefault()
+                            ).toInstant()
+            );
+
+            einddatum = Date.from(
+                    einddatumPicker
+                            .getValue()
+                            .atStartOfDay(
+                                    ZoneId.systemDefault()
+                            ).toInstant()
+            );
+
+
+            try {
+                    Patient patient = DAOProvider.getPatientDAO().getPatient(relatienummer);
+                    Behandeling behandeling = DAOProvider.getBehandelingDAO().getBehandeling(behandelingscode);
+
+                    Nota updated = new Nota(
+                            nota.getNummer(),
+                            patient,
+                            behandeling,
+                            startdatum,
+                            einddatum
+                    );
+
+                    DAOProvider.getNotaDAO().updateNota(nota);
+
+            } catch (DatalayerException e) {
+                ErrorDialogController.showError("Database fout", "Er is iets misgegaan bij het wijzigen.");
+                e.printStackTrace();
+
+                return;
+            }
 
             ErrorDialogController.showDialog("Item gewijzigd", "De nota is gewijzigd.");
             NotaOverzicht.updateData();

@@ -68,6 +68,10 @@ public class MysqlBehandelingDAO implements BehandelingDAO {
         } catch (SQLException sqlException) {
             System.out.printf("MysqlBehandelingDao::getBehandeling('%s'): SQLexception: %s\n", code, sqlException.getMessage());
             sqlException.printStackTrace();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.printf("MysqlBehandelingDao::getBehandeling('%s'): No Results", code);
+
+            throw new DatalayerException("No Results");
         }
 
         throw new DatalayerException();
