@@ -187,7 +187,7 @@ public class NotaOverzicht {
 
 
             try {
-                patient = DAOProvider.getPatientDAO().getPatient(relatienummer);
+                patient = DAOProvider.getPatientDAO().getPatientByRelNr(relatienummer);
             } catch (DatalayerException e) {
                 ErrorDialogController.showError("Database fout", "Patient kan niet worden gevonden of andere database fout. Controleer het relatienummer.");
                 e.printStackTrace();

@@ -75,6 +75,26 @@ public class MysqlPatientDAO implements PatientDAO {
     }
 
     @Override
+    public Patient getPatientByRelNr(int relatienummer) throws DatalayerException {
+        try {
+            String query = String.format(
+                    "SELECT bsn, achternaam, voorletters, geboortedatum, geslacht, email, relatienummer FROM persoon WHERE type = 'PATIENT' AND relatienummer = %d LIMIT 1;",
+                    relatienummer
+            );
+
+            Statement statement = StatementFactory.getInstance().createStatement();
+            ResultSet result = statement.executeQuery(query);
+
+            return instantiateFromQueryResults(result).get(0);
+
+        } catch (SQLException sqlException) {
+            throw new DatalayerException("getAllPatients(): SQLexception:", sqlException);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DatalayerException("getAllPatients(): No Results", e); //TODO
+        }
+    }
+
+    @Override
     public void savePatient(Patient patient) throws DatalayerException {
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

@@ -88,7 +88,7 @@ public class NotaDetail {
         //populate form inputs
         patientField.setText(
                 String.format("%d",
-                        nota.getPatient().getBsn())); //TODO BSN -> RELNR
+                        nota.getPatient().getRelatienummer()));
 
 
         startdatumPicker.setValue(
@@ -153,7 +153,7 @@ public class NotaDetail {
 
 
             try {
-                    Patient patient = DAOProvider.getPatientDAO().getPatient(relatienummer);
+                    Patient patient = DAOProvider.getPatientDAO().getPatientByRelNr(relatienummer);
                     Behandeling behandeling = DAOProvider.getBehandelingDAO().getBehandeling(behandelingscode);
 
                     Nota updated = new Nota(
