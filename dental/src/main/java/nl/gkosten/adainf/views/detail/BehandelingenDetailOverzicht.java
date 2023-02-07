@@ -32,7 +32,7 @@ public class BehandelingenDetailOverzicht {
         Label prijsLabel = new Label("Prijs:");
         Label omschrijvingLabel = new Label("Omschrijving:");
 
-        TextField codeField = new TextField();
+        Label codeField = new Label(behandeling.getCode()); //code kan niet worden aangepast
         TextField prijsField = new TextField();
         TextField omschrijvingField = new TextField();
 
@@ -65,13 +65,8 @@ public class BehandelingenDetailOverzicht {
            String behandelingscode, omschrijving;
            double prijs;
 
-           behandelingscode = codeField.getText();
-           if(behandelingscode.isBlank()) {
-               ErrorDialogController.showError("Ongeldige Invoer", "Voer een behandelingscode in.");
-
-               return;
-           }
-
+           //haal uit bestaand object
+           behandelingscode = behandeling.getCode();
 
            omschrijving = omschrijvingField.getText();
             if(omschrijving.isBlank()) {
