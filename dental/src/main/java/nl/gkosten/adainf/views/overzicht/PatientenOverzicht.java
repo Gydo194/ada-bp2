@@ -70,7 +70,7 @@ public class PatientenOverzicht {
                 new PropertyValueFactory<>("geslacht")
         );
 
-        TableColumn relatienummerColumn = new TableColumn("AGB-code");
+        TableColumn relatienummerColumn = new TableColumn("Relatienummer:");
         relatienummerColumn.setCellValueFactory(
                 new PropertyValueFactory<>("relatienummer")
         );
@@ -116,7 +116,7 @@ public class PatientenOverzicht {
         Label geboortedatumLabel    = new Label("Geboortedatum:");
         Label emailLabel            = new Label("E-mail:");
         Label geslachtLabel         = new Label("Geslacht:");
-        Label relatienummerLabel          = new Label("AGB-code:");
+        Label relatienummerLabel          = new Label("Relatienummer:");
 
         //inputs
         TextField bsnField = new TextField();
@@ -156,7 +156,7 @@ public class PatientenOverzicht {
             try {
                 relatienummer = Integer.parseInt(relatienummerField.getText());
             } catch(NumberFormatException e) {
-                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldige AGB-code in!");
+                ErrorDialogController.showError("Ongeldige Invoer", "Voer een geldig relatienummer in!");
                 e.printStackTrace();
 
                 return;
