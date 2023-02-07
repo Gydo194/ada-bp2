@@ -16,6 +16,9 @@ package nl.gkosten.adainf.views.detail;
         import nl.gkosten.adainf.views.Main;
         import nl.gkosten.adainf.views.overzicht.NotaOverzicht;
 
+        import java.time.Instant;
+        import java.time.ZoneId;
+
 public class NotaDetail {
     private final Nota nota;
     private final VBox container;
@@ -75,11 +78,31 @@ public class NotaDetail {
         container.getChildren().add(formGrid);
 
 
+        //populate form inputs
+        patientField.setText(
+                String.format("%d",
+                        nota.getPatient().getBsn())); //TODO BSN -> RELNR
+
+
+        startdatumPicker.setValue(
+                Instant.ofEpochMilli(
+                            nota.getStartdatum()
+                                        .getTime()).atZone(ZoneId.systemDefault())
+                                                .toLocalDate()
+        );
+
+        einddatumPicker.setValue(
+                Instant.ofEpochMilli(
+                            nota.getEinddatum()
+                                        .getTime()).atZone(ZoneId.systemDefault())
+                                                .toLocalDate()
+        );
+
 
 
 
         notanummerField.setText(String.format("%d", nota.getNummer()));
-        prijsField.setText(String.format("%.02f", nota.getPrijs()));
+        prijsField.setText(String.format("€%.02f", nota.getPrijs()));
         behandelingField.setText(nota.getBehandeling().getCode());
 
         updateButton.setOnAction(actionEvent -> {
