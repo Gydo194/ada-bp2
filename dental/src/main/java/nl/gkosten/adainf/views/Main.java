@@ -45,6 +45,8 @@ public class Main {
 
 
         homeScene = new Scene(container);
+
+        homeScene.getStylesheets().add(App.class.getResource("stylesheets/common.css").toString());
     }
 
     public static void addTab(Node content, String title) {
