@@ -1,9 +1,15 @@
 * {
 
+  -main-color: #9bf2af;
+  -main-darker: #86d298;
+  -main-dark: #5e966b;
+
+  -white: #F2F2F2;
 }
 
 .tab-pane *.tab-header-area *.tab-header-background {
-  -fx-background-color:transparent;
+  //-fx-background-color:transparent;
+  -fx-background-color: -main-color;
 }
 
 .tab-pane {
@@ -16,9 +22,9 @@
 .tab {
   -fx-font-family: Arial;
   -fx-font-size: 18;
-  -fx-background-color:royalblue ;
+  -fx-background-color: -main-darker;
 }
 
 .tab:selected {
-    -fx-background-color:blue ;
+    -fx-background-color: -main-dark;
 }
