@@ -269,6 +269,7 @@ public class NotaOverzicht {
         formGrid.getColumnConstraints().add(c3);
 
         formGrid.setHgap(App.FORM_HGAP);
+        formGrid.setVgap(App.FORM_VGAP);
 
         container.getChildren().add(formGrid);
         VBox.setMargin(formGrid, App.DEFAULT_INSETS);

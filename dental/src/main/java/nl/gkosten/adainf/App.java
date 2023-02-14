@@ -17,6 +17,7 @@ public class App extends Application {
     public static final double  VERTICAL_SPACING        = 10.0D;
     public static final Insets  DEFAULT_INSETS          = new Insets(0.0, 5.0, 0.0, 5.0);
     public static final double  FORM_HGAP               = 30.0D;
+    public static final double  FORM_VGAP               = 10.0D;
 
     private static Stage stageHandle;
 

@@ -274,7 +274,7 @@ public class PatientenOverzicht {
         formGrid.getColumnConstraints().add(c3);
 
         formGrid.setHgap(App.FORM_HGAP);
-
+        formGrid.setVgap(App.FORM_VGAP);
 
 
         container.getChildren().add(formGrid);
