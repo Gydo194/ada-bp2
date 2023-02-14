@@ -33,9 +33,12 @@ public class NotaOverzicht {
         container = new VBox();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
+        container.setSpacing(App.VERTICAL_SPACING);
+        container.getStyleClass().add("content-area");
 
 
         Text title = new Text("Nota's");
+        title.getStyleClass().add("header-text");
         container.getChildren().add(title);
 
 

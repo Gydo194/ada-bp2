@@ -4,7 +4,7 @@
   -main-darker: #86d298;
   -main-dark: #5e966b;
 
-  -white: #F2F2F2;
+  -main-background: #F2F2F2;
 }
 
 .tab-pane *.tab-header-area *.tab-header-background {
@@ -27,4 +27,13 @@
 
 .tab:selected {
     -fx-background-color: -main-dark;
+}
+
+.content-area {
+  //-fx-background-color: -main-background;
+  -fx-background-color: #FFFFFF;
+}
+
+.header-text {
+  -fx-font-size: 38px;
 }

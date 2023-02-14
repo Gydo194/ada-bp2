@@ -28,9 +28,12 @@ public class BehandelingenOverzicht {
     static {
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
+        container.setSpacing(App.VERTICAL_SPACING);
+        container.getStyleClass().add("content-area");
 
 
         Text title = new Text("Behandelingen");
+        title.getStyleClass().add("header-text");
         container.getChildren().add(title);
 
 
@@ -75,6 +78,7 @@ public class BehandelingenOverzicht {
 
 
         GridPane formGrid = new GridPane();
+        formGrid.getStyleClass().add("content-area");
         formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_Y);
 
         Label codeLabel = new Label("Code:");
