@@ -262,7 +262,7 @@ public class BehandelarenOverzicht {
         formGrid.add(agbcodeLabel,          2, 2);
         formGrid.add(agbcodeField,          3, 2);
 
-        formGrid.add(addButton,             3, 3);
+        formGrid.add(addButton,             0, 4);
 
         ColumnConstraints c0 = new ColumnConstraints();
         c0.setHgrow(Priority.ALWAYS);

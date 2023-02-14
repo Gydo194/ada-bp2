@@ -262,7 +262,7 @@ public class PatientenOverzicht {
         formGrid.add(relatienummerLabel,          2, 2);
         formGrid.add(relatienummerField,          3, 2);
 
-        formGrid.add(addButton,             3, 3);
+        formGrid.add(addButton,             0, 4);
 
 
         ColumnConstraints c0 = new ColumnConstraints();

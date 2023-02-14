@@ -255,7 +255,7 @@ public class NotaOverzicht {
         formGrid.add(einddatumPicker,       1, 4);
 
 
-        formGrid.add(addButton,             2, 4);
+        formGrid.add(addButton,             0, 5);
 
 
         ColumnConstraints c0 = new ColumnConstraints();
