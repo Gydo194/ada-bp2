@@ -86,12 +86,15 @@ public class BehandelingenOverzicht {
         formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_Y);
 
         Label codeLabel = new Label("Code:");
+        codeLabel.getStyleClass().add("form-label");
         TextField codeField = new TextField();
 
-        Label omschrijvingLabel = new Label("Omschrijving");
+        Label omschrijvingLabel = new Label("Omschrijving:");
+        omschrijvingLabel.getStyleClass().add("form-label");
         TextField omschrijvingField = new TextField();
 
         Label prijsLabel = new Label("prijs");
+        prijsLabel.getStyleClass().add("form-label");
         TextField prijsField = new TextField();
 
         Button addButton = new Button("Toevoegen");
@@ -121,6 +124,7 @@ public class BehandelingenOverzicht {
             updateData();
 
         });
+        addButton.getStyleClass().add("add-button");
 
         formGrid.add(codeLabel,         0, 0);
         formGrid.add(codeField,         1, 0);

@@ -231,6 +231,7 @@ public class NotaOverzicht {
             updateData();
 
         });
+        addButton.getStyleClass().add("add-button");
 
         formGrid.add(nummerLabel,           0, 0);
         formGrid.add(nummerField,           1, 0);

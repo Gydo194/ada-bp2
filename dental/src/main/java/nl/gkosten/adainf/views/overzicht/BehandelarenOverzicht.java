@@ -230,6 +230,7 @@ public class BehandelarenOverzicht {
             updateData();
 
         }); //eind button functie
+        addButton.getStyleClass().add("add-button");
 
         //nieuwe behandelaar form grid
         formGrid.add(bsnLabel,              0, 0);
