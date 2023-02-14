@@ -132,7 +132,7 @@ public class BehandelingenOverzicht {
         formGrid.add(omschrijvingField, 1, 1);
         formGrid.add(prijsLabel,        0, 2);
         formGrid.add(prijsField,        1, 2);
-        formGrid.add(addButton,         0, 3);
+        formGrid.add(addButton,         2, 2);
 
         ColumnConstraints c0 = new ColumnConstraints();
         c0.setHgrow(Priority.ALWAYS);

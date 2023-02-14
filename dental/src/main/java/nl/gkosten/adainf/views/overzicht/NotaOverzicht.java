@@ -116,6 +116,12 @@ public class NotaOverzicht {
         Label startdatumLabel = new Label("Startdatum:");
         Label einddatumLabel = new Label("Einddatum:");
 
+        nummerLabel.getStyleClass().add("form-label");
+        patientLabel.getStyleClass().add("form-label");
+        behandelingLabel.getStyleClass().add("form-label");
+        startdatumLabel.getStyleClass().add("form-label");
+        einddatumLabel.getStyleClass().add("form-label");
+
         TextField nummerField = new TextField();
         TextField patientField = new TextField();
         TextField behandelingField = new TextField();
@@ -249,7 +255,7 @@ public class NotaOverzicht {
         formGrid.add(einddatumPicker,       1, 4);
 
 
-        formGrid.add(addButton,             0, 5);
+        formGrid.add(addButton,             2, 4);
 
 
         ColumnConstraints c0 = new ColumnConstraints();

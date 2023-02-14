@@ -120,7 +120,15 @@ public class PatientenOverzicht {
         Label geboortedatumLabel    = new Label("Geboortedatum:");
         Label emailLabel            = new Label("E-mail:");
         Label geslachtLabel         = new Label("Geslacht:");
-        Label relatienummerLabel          = new Label("Relatienummer:");
+        Label relatienummerLabel    = new Label("Relatienummer:");
+
+        bsnLabel.getStyleClass().add("form-label");
+        achternaamLabel.getStyleClass().add("form-label");
+        voorlettersLabel.getStyleClass().add("form-label");
+        geboortedatumLabel.getStyleClass().add("form-label");
+        emailLabel.getStyleClass().add("form-label");
+        geslachtLabel.getStyleClass().add("form-label");
+        relatienummerLabel.getStyleClass().add("form-label");
 
         //inputs
         TextField bsnField = new TextField();

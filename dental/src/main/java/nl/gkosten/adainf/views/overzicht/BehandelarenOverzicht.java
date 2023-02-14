@@ -122,6 +122,14 @@ public class BehandelarenOverzicht {
         Label geslachtLabel         = new Label("Geslacht:");
         Label agbcodeLabel          = new Label("AGB-code:");
 
+        bsnLabel.getStyleClass().add("form-label");
+        achternaamLabel.getStyleClass().add("form-label");
+        voorlettersLabel.getStyleClass().add("form-label");
+        geboortedatumLabel.getStyleClass().add("form-label");
+        emailLabel.getStyleClass().add("form-label");
+        geslachtLabel.getStyleClass().add("form-label");
+        agbcodeLabel.getStyleClass().add("form-label");
+
         //inputs
         TextField bsnField = new TextField();
         TextField achternaamField = new TextField();
