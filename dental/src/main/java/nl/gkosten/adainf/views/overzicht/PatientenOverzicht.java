@@ -5,7 +5,9 @@ package nl.gkosten.adainf.views.overzicht;
         import javafx.scene.Node;
         import javafx.scene.control.*;
         import javafx.scene.control.cell.PropertyValueFactory;
+        import javafx.scene.layout.ColumnConstraints;
         import javafx.scene.layout.GridPane;
+        import javafx.scene.layout.Priority;
         import javafx.scene.layout.VBox;
         import javafx.scene.text.Text;
         import nl.gkosten.adainf.App;
@@ -13,7 +15,6 @@ package nl.gkosten.adainf.views.overzicht;
         import nl.gkosten.adainf.datalayer.DAOProvider;
         import nl.gkosten.adainf.datalayer.DatalayerException;
         import nl.gkosten.adainf.models.Patient;
-        import nl.gkosten.adainf.models.Behandeling;
         import nl.gkosten.adainf.models.Geslacht;
         import nl.gkosten.adainf.views.Main;
         import nl.gkosten.adainf.views.detail.PatientenDetail;
@@ -24,7 +25,7 @@ package nl.gkosten.adainf.views.overzicht;
 
 public class PatientenOverzicht {
     private static final VBox container = new VBox();
-    private static final TableView<Patient> behandelarenTable = new TableView();
+    private static final TableView<Patient> behandelarenTable = new TableView(); //TODO rename
     private static ObservableList<Patient> behandelaren = FXCollections.observableArrayList();
 
     private PatientenOverzicht() {
@@ -42,6 +43,7 @@ public class PatientenOverzicht {
         Text title = new Text("Patienten");
         title.getStyleClass().add("header-text");
         container.getChildren().add(title);
+        VBox.setMargin(title, App.DEFAULT_INSETS);
 
         //tableview kolommen
         TableColumn bsnColumn = new TableColumn("BSN");
@@ -88,7 +90,7 @@ public class PatientenOverzicht {
                 geslachtColumn,
                 relatienummerColumn
         );
-
+        VBox.setMargin(behandelarenTable, App.DEFAULT_INSETS);
 
         //open detailoverzicht bij dubbelklikken
         behandelarenTable.setOnMouseClicked(mouseEvent -> {
@@ -253,7 +255,30 @@ public class PatientenOverzicht {
 
         formGrid.add(addButton,             3, 3);
 
+
+        ColumnConstraints c0 = new ColumnConstraints();
+        c0.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c0);
+
+        ColumnConstraints c1 = new ColumnConstraints();
+        c1.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c1);
+
+        ColumnConstraints c2 = new ColumnConstraints();
+        c2.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c2);
+
+
+        ColumnConstraints c3 = new ColumnConstraints();
+        c3.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c3);
+
+        formGrid.setHgap(30.0D);
+
+
+
         container.getChildren().add(formGrid);
+        VBox.setMargin(formGrid, App.DEFAULT_INSETS);
 
     }
 

@@ -1,6 +1,7 @@
 package nl.gkosten.adainf;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.gkosten.adainf.views.Main;
@@ -14,6 +15,7 @@ public class App extends Application {
     public static final int     PREFERRED_DIMENSIONS_X  = 1200;
     public static final int     PREFERRED_DIMENSIONS_Y  = 800;
     public static final double  VERTICAL_SPACING        = 10.0D;
+    public static final Insets  DEFAULT_INSETS           = new Insets(0.0, 5.0, 0.0, 5.0);
 
     private static Stage stageHandle;
 

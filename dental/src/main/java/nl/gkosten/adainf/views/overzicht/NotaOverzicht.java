@@ -40,6 +40,7 @@ public class NotaOverzicht {
         Text title = new Text("Nota's");
         title.getStyleClass().add("header-text");
         container.getChildren().add(title);
+        VBox.setMargin(title, App.DEFAULT_INSETS);
 
 
         notaTable.setEditable(true);
@@ -86,6 +87,7 @@ public class NotaOverzicht {
                 einddatumColumn,
                 prijsColumn
         );
+        VBox.setMargin(notaTable, App.DEFAULT_INSETS);
 
         //open detailoverzicht bij dubbelklikken
         notaTable.setOnMouseClicked(mouseEvent -> {
@@ -247,6 +249,7 @@ public class NotaOverzicht {
         formGrid.add(addButton,             0, 5);
 
         container.getChildren().add(formGrid);
+        VBox.setMargin(formGrid, App.DEFAULT_INSETS);
 
     }
 

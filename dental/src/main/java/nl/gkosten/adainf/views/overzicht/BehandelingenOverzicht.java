@@ -35,6 +35,7 @@ public class BehandelingenOverzicht {
         Text title = new Text("Behandelingen");
         title.getStyleClass().add("header-text");
         container.getChildren().add(title);
+        VBox.setMargin(title, App.DEFAULT_INSETS);
 
 
         behandelingenTable.setEditable(true);
@@ -71,6 +72,7 @@ public class BehandelingenOverzicht {
                 omschrijvingColumn,
                 prijsColumn
         );
+        VBox.setMargin(behandelingenTable, App.DEFAULT_INSETS);
 
         updateData();
 
@@ -127,6 +129,7 @@ public class BehandelingenOverzicht {
         formGrid.add(addButton,         0, 3);
 
         container.getChildren().add(formGrid);
+        VBox.setMargin(formGrid, App.DEFAULT_INSETS);
 
     }
 

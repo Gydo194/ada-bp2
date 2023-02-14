@@ -13,7 +13,6 @@ import nl.gkosten.adainf.controllers.ErrorDialogController;
 import nl.gkosten.adainf.datalayer.DAOProvider;
 import nl.gkosten.adainf.datalayer.DatalayerException;
 import nl.gkosten.adainf.models.Behandelaar;
-import nl.gkosten.adainf.models.Behandeling;
 import nl.gkosten.adainf.models.Geslacht;
 import nl.gkosten.adainf.views.Main;
 import nl.gkosten.adainf.views.detail.BehandelarenDetailOverzicht;
@@ -41,6 +40,7 @@ public class BehandelarenOverzicht {
         Text title = new Text("Behandelaren");
         title.getStyleClass().add("header-text");
         container.getChildren().add(title);
+        VBox.setMargin(title, App.DEFAULT_INSETS);
 
         //tableview kolommen
         TableColumn bsnColumn = new TableColumn("BSN");
@@ -87,6 +87,7 @@ public class BehandelarenOverzicht {
                 geslachtColumn,
                 agbcodeColumn
         );
+        VBox.setMargin(behandelarenTable, App.DEFAULT_INSETS);
 
 
         //open detailoverzicht bij dubbelklikken
@@ -253,6 +254,7 @@ public class BehandelarenOverzicht {
         formGrid.add(addButton,             3, 3);
 
         container.getChildren().add(formGrid);
+        VBox.setMargin(formGrid, App.DEFAULT_INSETS);
 
     }
 
