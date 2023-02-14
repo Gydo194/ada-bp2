@@ -4,7 +4,8 @@
   -main-darker: #86d298;
   -main-dark: #5e966b;
 
-  -main-background: #F2F2F2;
+  -main-background: #FFFFFF;
+  -detail-background: #F0F0F0;
 }
 
 .tab-pane *.tab-header-area *.tab-header-background {
@@ -29,7 +30,11 @@
 }
 
 .content-area {
-  -fx-background-color: #FFFFFF;
+  -fx-background-color: -main-background;
+}
+
+.detail-content-area {
+  -fx-background-color: -detail-background;
 }
 
 .header-text {

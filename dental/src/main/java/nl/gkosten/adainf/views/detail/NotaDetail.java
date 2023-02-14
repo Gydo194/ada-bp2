@@ -34,6 +34,7 @@ public class NotaDetail {
         container = new VBox();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
+        container.getStyleClass().add("detail-content-area");
 
         Text title = new Text(String.format("Nota '%s'", nota.getNummer()));
         container.getChildren().add(title);

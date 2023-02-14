@@ -25,6 +25,7 @@ public class BehandelingenDetailOverzicht {
         container = new VBox();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
+        container.getStyleClass().add("detail-content-area");
 
         Text title = new Text(String.format("Behandeling '%s'", behandeling.getCode()));
         container.getChildren().add(title);
