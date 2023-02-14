@@ -8,13 +8,12 @@
 }
 
 .tab-pane *.tab-header-area *.tab-header-background {
-  //-fx-background-color:transparent;
   -fx-background-color: -main-color;
 }
 
 .tab-pane {
   -fx-tab-min-width:120px;
-  -fx-tab-max-width:120px;
+  -fx-tab-max-width:300px;
   -fx-tab-min-height:50px;
   -fx-tab-max-height:50px;
 }
@@ -30,7 +29,6 @@
 }
 
 .content-area {
-  //-fx-background-color: -main-background;
   -fx-background-color: #FFFFFF;
 }
 

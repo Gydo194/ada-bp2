@@ -5,7 +5,9 @@ package nl.gkosten.adainf.views.overzicht;
         import javafx.scene.Node;
         import javafx.scene.control.*;
         import javafx.scene.control.cell.PropertyValueFactory;
+        import javafx.scene.layout.ColumnConstraints;
         import javafx.scene.layout.GridPane;
+        import javafx.scene.layout.Priority;
         import javafx.scene.layout.VBox;
         import javafx.scene.text.Text;
         import nl.gkosten.adainf.App;
@@ -247,6 +249,26 @@ public class NotaOverzicht {
 
 
         formGrid.add(addButton,             0, 5);
+
+
+        ColumnConstraints c0 = new ColumnConstraints();
+        c0.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c0);
+
+        ColumnConstraints c1 = new ColumnConstraints();
+        c1.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c1);
+
+        ColumnConstraints c2 = new ColumnConstraints();
+        c2.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c2);
+
+
+        ColumnConstraints c3 = new ColumnConstraints();
+        c3.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c3);
+
+        formGrid.setHgap(App.FORM_HGAP);
 
         container.getChildren().add(formGrid);
         VBox.setMargin(formGrid, App.DEFAULT_INSETS);

@@ -273,7 +273,7 @@ public class PatientenOverzicht {
         c3.setHgrow(Priority.ALWAYS);
         formGrid.getColumnConstraints().add(c3);
 
-        formGrid.setHgap(30.0D);
+        formGrid.setHgap(App.FORM_HGAP);
 
 
 
