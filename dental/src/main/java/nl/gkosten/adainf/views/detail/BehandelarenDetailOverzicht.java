@@ -31,6 +31,7 @@ public class BehandelarenDetailOverzicht {
         container = new VBox();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
+        container.setSpacing(App.VERTICAL_SPACING);
         container.getStyleClass().add("detail-content-area");
 
         Text title = new Text(getTitle());

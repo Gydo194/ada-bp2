@@ -5,7 +5,9 @@ package nl.gkosten.adainf.views.detail;
         import javafx.scene.control.DatePicker;
         import javafx.scene.control.Label;
         import javafx.scene.control.TextField;
+        import javafx.scene.layout.ColumnConstraints;
         import javafx.scene.layout.GridPane;
+        import javafx.scene.layout.Priority;
         import javafx.scene.layout.VBox;
         import javafx.scene.text.Text;
         import nl.gkosten.adainf.App;
@@ -34,17 +36,24 @@ public class NotaDetail {
         container = new VBox();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
+        container.setSpacing(App.VERTICAL_SPACING);
         container.getStyleClass().add("detail-content-area");
 
         Text title = new Text(String.format("Nota '%s'", nota.getNummer()));
         container.getChildren().add(title);
 
         Label notanummerLabel = new Label("Notanummer:");
+        notanummerLabel.getStyleClass().add("form-label");
         Label patientLabel = new Label("Patient:");
+        patientLabel.getStyleClass().add("form-label");
         Label startdatumLabel = new Label("Startdatum:");
+        startdatumLabel.getStyleClass().add("form-label");
         Label einddatumLabel = new Label("Einddatum:");
+        einddatumLabel.getStyleClass().add("form-label");
         Label behandelingLabel = new Label("Behandeling:");
+        behandelingLabel.getStyleClass().add("form-label");
         Label prijsLabel = new Label("Prijs:");
+        prijsLabel.getStyleClass().add("form-label");
 
         Label notanummerField = new Label(String.format("%d", nota.getNummer())); //notanummer kan niet worden aangepast
         TextField patientField = new TextField();
@@ -84,7 +93,27 @@ public class NotaDetail {
 
         formGrid.add(updateButton,         0, 6);
         formGrid.add(deleteButton,         1, 6);
-        formGrid.add(submitButton,         0, 7);
+        formGrid.add(submitButton,         2, 6);
+
+        ColumnConstraints c0 = new ColumnConstraints();
+        c0.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c0);
+
+        ColumnConstraints c1 = new ColumnConstraints();
+        c1.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c1);
+
+        ColumnConstraints c2 = new ColumnConstraints();
+        c2.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c2);
+
+        ColumnConstraints c3 = new ColumnConstraints();
+        c3.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c3);
+
+        formGrid.setHgap(App.FORM_HGAP);
+        formGrid.setVgap(App.FORM_VGAP);
+
 
         container.getChildren().add(formGrid);
 
