@@ -4,6 +4,18 @@
   -main-darker: #86d298;
   -main-dark: #5e966b;
 
+  -edit-main: #ff8f00;
+  -edit-darker: #de7c00;
+  -edit-dark: #be6900;
+
+  -delete-main: #dc143c;
+  -delete-darker: #bf1033;
+  -delete-dark: #a30c2a;
+
+  -submit-main: #1e90ff;
+  -submit-darker: #197dde;
+  -submit-dark: #136abe;
+
   -main-background: #FFFFFF;
   -detail-background: #FFFFFF;
 }
@@ -49,6 +61,10 @@
 */
 
 
+.form-label {
+  -fx-font-weight: bold;
+}
+
 
 
 /* Toevoegen knop */
@@ -73,15 +89,15 @@
 
 /* Wijzigen knop */
 .edit-button {
-    -fx-background-color: -main-color;
+    -fx-background-color: -edit-main;
   }
 
 .edit-button:hover {
-  -fx-background-color: -main-darker;
+  -fx-background-color: -edit-darker;
 }
 
 .edit-button:pressed {
-  -fx-background-color: -main-dark;
+  -fx-background-color: -edit-dark;
 }
 
 .edit-button {
@@ -91,15 +107,15 @@
 
 /* Verwijderen knop */
 .delete-button {
-  -fx-background-color: -main-color;
+  -fx-background-color: -delete-main;
 }
 
 .delete-button:hover {
-  -fx-background-color: -main-darker;
+  -fx-background-color: -delete-darker;
 }
 
 .delete-button:pressed {
-  -fx-background-color: -main-dark;
+  -fx-background-color: -delete-dark;
 }
 
 .delete-button {
@@ -107,6 +123,20 @@
   -fx-font-weight: bold;
 }
 
-.form-label {
+/* Declareren knop */
+.submit-button {
+  -fx-background-color: -submit-main;
+}
+
+.submit-button:hover {
+  -fx-background-color: -submit-darker;
+}
+
+.submit-button:pressed {
+  -fx-background-color: -submit-dark;
+}
+
+.submit-button {
+  -fx-font-size: 18px;
   -fx-font-weight: bold;
 }

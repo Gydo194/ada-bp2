@@ -54,8 +54,11 @@ public class NotaDetail {
         Label prijsField = new Label(String.format("%.02f", nota.getBehandeling().getPrijs()));
 
         Button updateButton = new Button("Opslaan");
+        updateButton.getStyleClass().add("edit-button");
         Button deleteButton = new Button("Verwijderen");
+        deleteButton.getStyleClass().add("delete-button");
         Button submitButton = new Button("Nota declareren");
+        submitButton.getStyleClass().add("submit-button");
 
         GridPane formGrid = new GridPane();
         formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
