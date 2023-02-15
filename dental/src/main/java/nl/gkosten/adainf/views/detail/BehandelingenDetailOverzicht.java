@@ -48,8 +48,11 @@ public class BehandelingenDetailOverzicht {
 
         Button updateButton = new Button("Opslaan");
         updateButton.getStyleClass().add("edit-button");
+        updateButton.setMaxWidth(Double.MAX_VALUE);
+
         Button deleteButton = new Button("Verwijderen");
         deleteButton.getStyleClass().add("delete-button");
+        deleteButton.setMaxWidth(Double.MAX_VALUE);
 
         GridPane formGrid = new GridPane();
         formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
