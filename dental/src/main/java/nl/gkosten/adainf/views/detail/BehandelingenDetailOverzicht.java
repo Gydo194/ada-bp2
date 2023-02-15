@@ -4,7 +4,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import nl.gkosten.adainf.App;
@@ -25,21 +27,29 @@ public class BehandelingenDetailOverzicht {
         container = new VBox();
         container.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
         container.setPrefHeight(App.PREFERRED_DIMENSIONS_Y);
+        container.setSpacing(App.VERTICAL_SPACING);
         container.getStyleClass().add("detail-content-area");
 
         Text title = new Text(String.format("Behandeling '%s'", behandeling.getCode()));
+        title.getStyleClass().add("header-text");
         container.getChildren().add(title);
+        VBox.setMargin(title, App.DEFAULT_INSETS);
 
         Label codeLabel = new Label("Behandelingscode:");
+        codeLabel.getStyleClass().add("form-label");
         Label prijsLabel = new Label("Prijs:");
+        prijsLabel.getStyleClass().add("form-label");
         Label omschrijvingLabel = new Label("Omschrijving:");
+        omschrijvingLabel.getStyleClass().add("form-label");
 
         Label codeField = new Label(behandeling.getCode()); //code kan niet worden aangepast
         TextField prijsField = new TextField();
         TextField omschrijvingField = new TextField();
 
         Button updateButton = new Button("Opslaan");
+        updateButton.getStyleClass().add("edit-button");
         Button deleteButton = new Button("Verwijderen");
+        deleteButton.getStyleClass().add("delete-button");
 
         GridPane formGrid = new GridPane();
         formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
@@ -53,7 +63,28 @@ public class BehandelingenDetailOverzicht {
         formGrid.add(updateButton,          0, 3);
         formGrid.add(deleteButton,          1, 3);
 
+
+        ColumnConstraints c0 = new ColumnConstraints();
+        c0.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c0);
+
+        ColumnConstraints c1 = new ColumnConstraints();
+        c1.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c1);
+
+        ColumnConstraints c2 = new ColumnConstraints();
+        c2.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c2);
+
+        ColumnConstraints c3 = new ColumnConstraints();
+        c3.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c3);
+
+        formGrid.setHgap(App.FORM_HGAP);
+        formGrid.setVgap(App.FORM_VGAP);
+
         container.getChildren().add(formGrid);
+        VBox.setMargin(formGrid, App.DEFAULT_INSETS);
 
 
 

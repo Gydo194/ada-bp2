@@ -51,12 +51,15 @@
 
 
 
+/* Toevoegen knop */
 .add-button {
   -fx-background-color: -main-color;
 }
+
 .add-button:hover {
   -fx-background-color: -main-darker;
 }
+
 .add-button:pressed {
   -fx-background-color: -main-dark;
 }
@@ -66,6 +69,43 @@
   -fx-font-weight: bold;
 }
 
+
+
+/* Wijzigen knop */
+.edit-button {
+    -fx-background-color: -main-color;
+  }
+
+.edit-button:hover {
+  -fx-background-color: -main-darker;
+}
+
+.edit-button:pressed {
+  -fx-background-color: -main-dark;
+}
+
+.edit-button {
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+}
+
+/* Verwijderen knop */
+.delete-button {
+  -fx-background-color: -main-color;
+}
+
+.delete-button:hover {
+  -fx-background-color: -main-darker;
+}
+
+.delete-button:pressed {
+  -fx-background-color: -main-dark;
+}
+
+.delete-button {
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+}
 
 .form-label {
   -fx-font-weight: bold;
