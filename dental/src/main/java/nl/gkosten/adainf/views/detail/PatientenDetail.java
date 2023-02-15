@@ -71,7 +71,9 @@ public class PatientenDetail {
 
 
         Button updateButton = new Button("Opslaan");
+        updateButton.getStyleClass().add("edit-button");
         Button deleteButton = new Button("Verwijderen");
+        deleteButton.getStyleClass().add("delete-button");
 
         GridPane formGrid = new GridPane();
         formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
