@@ -37,6 +37,7 @@ public class PatientenDetail {
         Text title = new Text(getTitle());
         title.getStyleClass().add("header-text");
         container.getChildren().add(title);
+        VBox.setMargin(title, App.DEFAULT_INSETS);
 
         Label bsnLabel = new Label("BSN-nummer:");
         Label achternaamLabel = new Label("Achternaam:");
@@ -99,6 +100,7 @@ public class PatientenDetail {
         formGrid.add(deleteButton,          1, 7);
 
         container.getChildren().add(formGrid);
+        VBox.setMargin(formGrid, App.DEFAULT_INSETS);
 
 
 

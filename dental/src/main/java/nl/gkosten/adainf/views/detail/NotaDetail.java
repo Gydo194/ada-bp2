@@ -42,6 +42,7 @@ public class NotaDetail {
         Text title = new Text(String.format("Nota '%s'", nota.getNummer()));
         title.getStyleClass().add("header-text");
         container.getChildren().add(title);
+        VBox.setMargin(title, App.DEFAULT_INSETS);
 
         Label notanummerLabel = new Label("Notanummer:");
         notanummerLabel.getStyleClass().add("form-label");
@@ -117,6 +118,7 @@ public class NotaDetail {
 
 
         container.getChildren().add(formGrid);
+        VBox.setMargin(formGrid, App.DEFAULT_INSETS);
 
 
         //populate form inputs

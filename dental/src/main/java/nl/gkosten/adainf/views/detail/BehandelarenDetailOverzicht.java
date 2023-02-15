@@ -4,7 +4,9 @@ package nl.gkosten.adainf.views.detail;
         import javafx.collections.ObservableList;
         import javafx.scene.Node;
         import javafx.scene.control.*;
+        import javafx.scene.layout.ColumnConstraints;
         import javafx.scene.layout.GridPane;
+        import javafx.scene.layout.Priority;
         import javafx.scene.layout.VBox;
         import javafx.scene.text.Text;
         import nl.gkosten.adainf.App;
@@ -37,14 +39,22 @@ public class BehandelarenDetailOverzicht {
         Text title = new Text(getTitle());
         title.getStyleClass().add("header-text");
         container.getChildren().add(title);
+        VBox.setMargin(title, App.DEFAULT_INSETS);
 
         Label bsnLabel = new Label("BSN-nummer:");
+        bsnLabel.getStyleClass().add("form-label");
         Label achternaamLabel = new Label("Achternaam:");
+        achternaamLabel.getStyleClass().add("form-label");
         Label voorlettersLabel = new Label("Voorletters:");
+        voorlettersLabel.getStyleClass().add("form-label");
         Label geboortedatumLabel = new Label("Geboortedatum:");
+        geboortedatumLabel.getStyleClass().add("form-label");
         Label emailLabel = new Label("E-mail:");
+        emailLabel.getStyleClass().add("form-label");
         Label geslachtLabel = new Label("Geslacht:");
+        geslachtLabel.getStyleClass().add("form-label");
         Label agbcodeLabel = new Label("AGB-code:");
+        agbcodeLabel.getStyleClass().add("form-label");
 
         Label bsnField = new Label(String.format("%d", behandelaar.getBsn())); //code kan niet worden aangepast
         TextField achternaamField = new TextField();
@@ -68,7 +78,9 @@ public class BehandelarenDetailOverzicht {
 
 
         Button updateButton = new Button("Opslaan");
+        updateButton.getStyleClass().add("edit-button");
         Button deleteButton = new Button("Verwijderen");
+        deleteButton.getStyleClass().add("delete-button");
 
         GridPane formGrid = new GridPane();
         formGrid.setPrefWidth(App.PREFERRED_DIMENSIONS_X);
@@ -98,7 +110,26 @@ public class BehandelarenDetailOverzicht {
         formGrid.add(updateButton,          0, 7);
         formGrid.add(deleteButton,          1, 7);
 
+        ColumnConstraints c0 = new ColumnConstraints();
+        c0.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c0);
+
+        ColumnConstraints c1 = new ColumnConstraints();
+        c1.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c1);
+
+        ColumnConstraints c2 = new ColumnConstraints();
+        c2.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c2);
+
+        ColumnConstraints c3 = new ColumnConstraints();
+        c3.setHgrow(Priority.ALWAYS);
+        formGrid.getColumnConstraints().add(c3);
+
+        formGrid.setHgap(App.FORM_HGAP);
+        formGrid.setVgap(App.FORM_VGAP);
         container.getChildren().add(formGrid);
+        VBox.setMargin(formGrid, App.DEFAULT_INSETS);
 
 
 
