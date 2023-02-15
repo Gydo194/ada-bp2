@@ -40,6 +40,7 @@ public class NotaDetail {
         container.getStyleClass().add("detail-content-area");
 
         Text title = new Text(String.format("Nota '%s'", nota.getNummer()));
+        title.getStyleClass().add("header-text");
         container.getChildren().add(title);
 
         Label notanummerLabel = new Label("Notanummer:");

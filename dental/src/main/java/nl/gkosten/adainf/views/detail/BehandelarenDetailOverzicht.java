@@ -35,6 +35,7 @@ public class BehandelarenDetailOverzicht {
         container.getStyleClass().add("detail-content-area");
 
         Text title = new Text(getTitle());
+        title.getStyleClass().add("header-text");
         container.getChildren().add(title);
 
         Label bsnLabel = new Label("BSN-nummer:");
