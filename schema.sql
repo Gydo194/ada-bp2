@@ -10,8 +10,8 @@ CREATE TABLE persoon (
     geboortedatum DATE                                   NOT NULL,
     geslacht      ENUM('M', 'V')                         NOT NULL,
     email         VARCHAR(100)                           NOT NULL,
-    agbcode       INT                                    NULL, -- unique
-    relatienummer INT                                    NULL, -- unique
+    agbcode       INT                                    NULL,
+    relatienummer INT                                    NULL,
     type          ENUM('PATIENT', 'BEHANDELAAR')         NOT NULL,
     PRIMARY KEY(bsn)
 );
